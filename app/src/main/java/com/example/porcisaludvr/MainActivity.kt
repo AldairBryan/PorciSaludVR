@@ -32,9 +32,13 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -65,12 +69,12 @@ class MainActivity : ComponentActivity() {
 fun MainScreen(navController: NavHostController) {
     val listState = rememberLazyListState()
     val buttonItems = listOf(
-        ButtonItem("Realidad Aumentada", R.drawable.ic_launcher_foreground, "ruta_boton1"),
-        ButtonItem("Enfermedades", R.drawable.ic_launcher_foreground, "ruta_boton2"),
-        ButtonItem("Sobre el Cuidado", R.drawable.ic_launcher_foreground, "ruta_boton3"),
-        ButtonItem("¿Esta enfermo?", R.drawable.ic_launcher_foreground, "ruta_boton4"),
-        ButtonItem("Noticias", R.drawable.ic_launcher_foreground, "ruta_boton5"),
-        ButtonItem("Sobre Nosotros", R.drawable.ic_launcher_foreground, "info_screen")
+        ButtonItem("Realidad Aumentada", R.drawable.augmented_reality_icon, "realidad_aumentada"),
+        ButtonItem("Enfermedades", R.drawable.pig_sick_icon, "enfermedades_cerdos"),
+        ButtonItem("Sobre el Cuidado", R.drawable.pig_breeding_icon, "cuidados_cerdos"),
+        ButtonItem("¿Esta enfermo?", R.drawable.is_sick_icon, "test_pig"),
+        ButtonItem("Noticias", R.drawable.news_icon, "noticias_cerdos"),
+        ButtonItem("Sobre  Nosotros", R.drawable.about_us_icon, "info_screen")
     )
 
     LazyColumn(
@@ -92,7 +96,7 @@ fun MainScreen(navController: NavHostController) {
                         modifier = Modifier
                             .width(GetScreenWidth() / 2)
                             .height(GetScreenHeight()/3)
-                            .background(Color.White)
+                            .background(Color.Transparent)
                             .padding(8.dp)
                     ) {
                         Column(
@@ -102,12 +106,15 @@ fun MainScreen(navController: NavHostController) {
                                 painter = painterResource(id = item.imageResource),
                                 contentDescription = null, // Puedes proporcionar una descripción adecuada aquí
                                 modifier = Modifier
-                                    .size(64.dp)
+                                    .size(100.dp)
                                     .padding(4.dp)
                             )
                             Text(text = item.label,
                                 fontFamily = Itim,
-                                fontSize = )
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(211,58,84,255),
+                                textAlign = TextAlign.Center)
                         }
                     }
                 }
