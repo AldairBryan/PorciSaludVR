@@ -67,6 +67,9 @@ class MainActivity : ComponentActivity() {
                     composable("info_screen") {
                         InfoScreen(navController)
                     }
+                    composable("realidad_aumentada"){
+                        EnfermedadesVRScreen(navController)
+                    }
                 }
             }
         }

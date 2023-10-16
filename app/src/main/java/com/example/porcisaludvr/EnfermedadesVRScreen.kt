@@ -13,6 +13,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -23,9 +25,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.porcisaludvr.ui.theme.Translucent
 import com.google.ar.core.Config
 import io.github.sceneview.ar.ARScene
@@ -33,7 +37,23 @@ import io.github.sceneview.ar.node.ArModelNode
 import io.github.sceneview.ar.node.ArNode
 import io.github.sceneview.ar.node.PlacementMode
 
-class EnfermedadesVRScreen {
+@Composable
+fun EnfermedadesVRScreen(navController: NavHostController) {
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = Color.Transparent
+    ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            val currentModel = remember {
+                mutableStateOf("ppc")
+            }
+            ARScreen(currentModel.value)
+            Enfermedades(modifier = Modifier.align(Alignment.BottomCenter)) {
+                currentModel.value = it
+            }
+
+        }
+    }
 }
 
 @Composable
@@ -43,9 +63,9 @@ fun Enfermedades(modifier: Modifier, onClick:(String)->Unit) {
     }
 
     val itemsList = listOf(
-        Enfermedad("ppc",R.drawable.burger),
-        Enfermedad("sarcopsis",R.drawable.instant),
-        Enfermedad("influenza",R.drawable.momos),
+        Enfermedad("ppc",R.drawable.ppc),
+        Enfermedad("sarcopsis",R.drawable.sarcopsis),
+        Enfermedad("influenza",R.drawable.influenza),
         )
     fun updateIndex(offset:Int){
         currentIndex = (currentIndex+offset + itemsList.size) % itemsList.size
