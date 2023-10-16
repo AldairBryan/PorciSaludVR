@@ -61,6 +61,9 @@ class MainActivity : ComponentActivity() {
                     composable("main_screen") {
                         MainScreen(navController)
                     }
+                    composable("enfermedades_cerdos"){
+                        PPCInfoScreen(navController)
+                    }
                     composable("info_screen") {
                         InfoScreen(navController)
                     }
@@ -102,8 +105,8 @@ fun MainScreen(navController: NavHostController) {
                         },
                         colors = ButtonDefaults.buttonColors(Color.Transparent),
                         modifier = Modifier
-                            .width((GetScreenWidth()/ 2)-8.dp)
-                            .height((GetScreenHeight()/3)-75.dp)
+                            .width((GetScreenWidth() / 2) - 8.dp)
+                            .height((GetScreenHeight() / 3) - 75.dp)
                             .border(
                                 width = 5.dp, // Ancho del borde
                                 color = item.color, // Color del borde
