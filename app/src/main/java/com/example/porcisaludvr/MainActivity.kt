@@ -39,6 +39,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.porcisaludvr.InfoEnfermedades.PPCInfoScreen
+import com.example.porcisaludvr.InfoEnfermedades.SelectEnfermedadesInfo
 import com.example.porcisaludvr.VR.EnfermedadesVRScreen
 import com.example.porcisaludvr.VR.SelectEnfermedadesVR
 import com.example.porcisaludvr.ui.theme.Itim
@@ -54,8 +55,11 @@ class MainActivity : ComponentActivity() {
                     composable("main_screen") {
                         MainScreen(navController)
                     }
+                    composable("select_enfermedad_vr"){
+                        SelectEnfermedadesVR(navController)
+                    }
                     composable("enfermedades_cerdos"){
-                        PPCInfoScreen(navController)
+                        SelectEnfermedadesInfo(navController)
                     }
                     composable("info_screen") {
                         InfoScreen(navController)
@@ -68,9 +72,6 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("VR-3"){
                         EnfermedadesVRScreen(navController,"neumonia")
-                    }
-                    composable("select_enfermedad_vr"){
-                        SelectEnfermedadesVR(navController)
                     }
                 }
             }
