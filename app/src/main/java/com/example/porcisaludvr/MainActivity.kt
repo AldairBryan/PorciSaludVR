@@ -38,7 +38,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.porcisaludvr.InfoEnfermedades.NeumoniaInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.PPCInfoScreen
+import com.example.porcisaludvr.InfoEnfermedades.SarnaInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.SelectEnfermedadesInfo
 import com.example.porcisaludvr.VR.EnfermedadesVRScreen
 import com.example.porcisaludvr.VR.SelectEnfermedadesVR
@@ -64,6 +66,8 @@ class MainActivity : ComponentActivity() {
                     composable("info_screen") {
                         InfoScreen(navController)
                     }
+
+                    //Realidad Aumentada Screens
                     composable("VR-1"){
                         EnfermedadesVRScreen(navController,"ppc")
                     }
@@ -72,6 +76,17 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("VR-3"){
                         EnfermedadesVRScreen(navController,"neumonia")
+                    }
+
+                    //Informacion de Enfermedades Screens
+                    composable("info_enfermedad_ppc"){
+                        PPCInfoScreen(navController)
+                    }
+                    composable("info_enfermedad_sarna"){
+                        SarnaInfoScreen(navController)
+                    }
+                    composable("info_enfermedad_neumonia"){
+                        NeumoniaInfoScreen(navController)
                     }
                 }
             }
