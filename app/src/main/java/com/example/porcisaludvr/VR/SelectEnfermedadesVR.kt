@@ -24,10 +24,13 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.porcisaludvr.ButtonItem
+import com.example.porcisaludvr.MainScreen
 import com.example.porcisaludvr.R
 import com.example.porcisaludvr.ui.theme.Itim
 
@@ -38,10 +41,10 @@ fun SelectEnfermedadesVR(navController: NavHostController) {
         ButtonItem("Peste Porcina", R.drawable.augmented_reality_icon, "VR-1",
             Color(252,209,49,255)
         ),
-        ButtonItem("Sarna Sarcoptica", R.drawable.pig_sick_icon, "VR-2",
+        ButtonItem("Sarna Sarcoptica", R.drawable.sel_vr_sarna, "VR-2",
             Color(211,58,84,255)
         ),
-        ButtonItem("Neumonía Enzoótica", R.drawable.pig_breeding_icon, "VR-3",
+        ButtonItem("Neumonía Enzoótica", R.drawable.sel_vr_neumonia, "VR-3",
             Color(175,180,43,255)
         ),
     )
@@ -89,3 +92,10 @@ fun SelectEnfermedadesVR(navController: NavHostController) {
 }
 
 data class ButtonItem(val label: String, val imageResource: Int, val route: String, val color: Color)
+
+@Preview
+@Composable
+fun PreviewMain(){
+    val navController = rememberNavController()
+    SelectEnfermedadesVR(navController)
+}

@@ -64,8 +64,8 @@ fun Enfermedades(modifier: Modifier, onClick:(String)->Unit) {
 
     val itemsList = listOf(
         Enfermedad("ppc", R.drawable.sel_vr_ppc),
-        Enfermedad("sarna", R.drawable.sarcopsis),
-        Enfermedad("neumonia", R.drawable.influenza),
+        Enfermedad("sarna", R.drawable.sel_vr_sarna),
+        Enfermedad("neumonia", R.drawable.sel_vr_neumonia),
         )
     fun updateIndex(offset:Int){
         currentIndex = (currentIndex+offset + itemsList.size) % itemsList.size
