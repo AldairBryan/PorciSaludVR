@@ -52,7 +52,7 @@ fun EnfermedadesVRScreen(navController: NavHostController, enfermedad: String) {
             when (enfermedad){
                 "ppc" -> { num = 0}
                 "sarna" -> { num = 1}
-                "neuomnia" -> {num = 2}
+                "neumonia" -> {num = 2}
             }
             Enfermedades(num,modifier = Modifier.align(Alignment.BottomCenter)) {
                 currentModel.value = it

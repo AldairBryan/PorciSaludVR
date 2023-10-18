@@ -68,13 +68,13 @@ class MainActivity : ComponentActivity() {
                     }
 
                     //Realidad Aumentada Screens
-                    composable("VR-1"){
+                    composable("VR-ppc"){
                         EnfermedadesVRScreen(navController,"ppc")
                     }
-                    composable("VR-2"){
+                    composable("VR-sarna"){
                         EnfermedadesVRScreen(navController,"sarna")
                     }
-                    composable("VR-3"){
+                    composable("VR-neumonia"){
                         EnfermedadesVRScreen(navController,"neumonia")
                     }
 
