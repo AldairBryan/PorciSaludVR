@@ -48,7 +48,13 @@ fun EnfermedadesVRScreen(navController: NavHostController, enfermedad: String) {
                 mutableStateOf(enfermedad)
             }
             ARScreen(currentModel.value)
-            Enfermedades(modifier = Modifier.align(Alignment.BottomCenter)) {
+            var num: Int = 0
+            when (enfermedad){
+                "ppc" -> { num = 0}
+                "sarna" -> { num = 1}
+                "neuomnia" -> {num = 2}
+            }
+            Enfermedades(num,modifier = Modifier.align(Alignment.BottomCenter)) {
                 currentModel.value = it
             }
 
@@ -57,16 +63,17 @@ fun EnfermedadesVRScreen(navController: NavHostController, enfermedad: String) {
 }
 
 @Composable
-fun Enfermedades(modifier: Modifier, onClick:(String)->Unit) {
-    var currentIndex by remember {
-        mutableStateOf(0)
-    }
+fun Enfermedades(startIndex: Int, modifier: Modifier, onClick:(String)->Unit) {
+
 
     val itemsList = listOf(
         Enfermedad("ppc", R.drawable.sel_vr_ppc),
         Enfermedad("sarna", R.drawable.sel_vr_sarna),
         Enfermedad("neumonia", R.drawable.sel_vr_neumonia),
         )
+    var currentIndex by remember {
+        mutableStateOf(startIndex)
+    }
     fun updateIndex(offset:Int){
         currentIndex = (currentIndex+offset + itemsList.size) % itemsList.size
         onClick(itemsList[currentIndex].name)

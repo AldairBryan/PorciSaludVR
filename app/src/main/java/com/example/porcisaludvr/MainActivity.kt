@@ -38,6 +38,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.porcisaludvr.InfoEnfermedades.PPCInfoScreen
 import com.example.porcisaludvr.VR.EnfermedadesVRScreen
 import com.example.porcisaludvr.VR.SelectEnfermedadesVR
 import com.example.porcisaludvr.ui.theme.Itim
