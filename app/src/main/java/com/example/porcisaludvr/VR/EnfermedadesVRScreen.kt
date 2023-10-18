@@ -1,4 +1,4 @@
-package com.example.porcisaludvr
+package com.example.porcisaludvr.VR
 
 import android.util.Log
 import androidx.compose.foundation.Image
@@ -13,7 +13,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +29,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.porcisaludvr.R
 import com.example.porcisaludvr.ui.theme.Translucent
 import com.google.ar.core.Config
 import io.github.sceneview.ar.ARScene
@@ -38,14 +38,14 @@ import io.github.sceneview.ar.node.ArNode
 import io.github.sceneview.ar.node.PlacementMode
 
 @Composable
-fun EnfermedadesVRScreen(navController: NavHostController) {
+fun EnfermedadesVRScreen(navController: NavHostController, enfermedad: String) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = Color.Transparent
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             val currentModel = remember {
-                mutableStateOf("ppc")
+                mutableStateOf(enfermedad)
             }
             ARScreen(currentModel.value)
             Enfermedades(modifier = Modifier.align(Alignment.BottomCenter)) {
@@ -63,9 +63,9 @@ fun Enfermedades(modifier: Modifier, onClick:(String)->Unit) {
     }
 
     val itemsList = listOf(
-        Enfermedad("ppc",R.drawable.ppc),
-        Enfermedad("sarcopsis",R.drawable.sarcopsis),
-        Enfermedad("influenza",R.drawable.influenza),
+        Enfermedad("ppc", R.drawable.sel_vr_ppc),
+        Enfermedad("sarna", R.drawable.sarcopsis),
+        Enfermedad("neumonia", R.drawable.influenza),
         )
     fun updateIndex(offset:Int){
         currentIndex = (currentIndex+offset + itemsList.size) % itemsList.size
@@ -150,7 +150,7 @@ fun ARScreen(model:String) {
             Button(onClick = {
                 modelNode.value?.anchor()
             }, modifier = Modifier.align(Alignment.Center)) {
-                Text(text = "Place It")
+                Text(text = "Colocar")
             }
         }
     }

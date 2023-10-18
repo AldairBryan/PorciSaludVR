@@ -10,11 +10,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,21 +21,13 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -48,6 +38,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.porcisaludvr.VR.EnfermedadesVRScreen
+import com.example.porcisaludvr.VR.SelectEnfermedadesVR
 import com.example.porcisaludvr.ui.theme.Itim
 import com.example.porcisaludvr.ui.theme.PorciSaludVRTheme
 
@@ -67,8 +59,17 @@ class MainActivity : ComponentActivity() {
                     composable("info_screen") {
                         InfoScreen(navController)
                     }
-                    composable("realidad_aumentada"){
-                        EnfermedadesVRScreen(navController)
+                    composable("VR-1"){
+                        EnfermedadesVRScreen(navController,"ppc")
+                    }
+                    composable("VR-2"){
+                        EnfermedadesVRScreen(navController,"sarna")
+                    }
+                    composable("VR-3"){
+                        EnfermedadesVRScreen(navController,"neumonia")
+                    }
+                    composable("select_enfermedad_vr"){
+                        SelectEnfermedadesVR(navController)
                     }
                 }
             }
@@ -80,7 +81,7 @@ class MainActivity : ComponentActivity() {
 fun MainScreen(navController: NavHostController) {
     val listState = rememberLazyListState()
     val buttonItems = listOf(
-        ButtonItem("Realidad Aumentada", R.drawable.augmented_reality_icon, "realidad_aumentada",Color(252,209,49,255)),
+        ButtonItem("Realidad Aumentada", R.drawable.augmented_reality_icon, "select_enfermedad_vr",Color(252,209,49,255)),
         ButtonItem("Enfermedades", R.drawable.pig_sick_icon, "enfermedades_cerdos",Color(211,58,84,255)),
         ButtonItem("Sobre el Cuidado", R.drawable.pig_breeding_icon, "cuidados_cerdos",Color(175,180,43,255)),
         ButtonItem("¿Esta enfermo?", R.drawable.is_sick_icon, "test_pig",Color(156,52,194,255)),
