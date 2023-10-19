@@ -198,7 +198,7 @@ fun PPCInfoScreen(navController: NavHostController) {
                 .border(
                     width = 5.dp, // Ancho del borde
                     color = colorInfo, // Color del borde
-                    shape = RoundedCornerShape(16.dp) // Bordes redondeados
+                    shape = RoundedCornerShape(24.dp) // Bordes redondeados
                 )
                 .background(Color.Transparent)
         ) {

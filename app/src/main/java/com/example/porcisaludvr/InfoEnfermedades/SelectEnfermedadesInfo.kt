@@ -2,12 +2,14 @@ package com.example.porcisaludvr.InfoEnfermedades
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -35,13 +37,13 @@ fun SelectEnfermedadesInfo(navController: NavHostController) {
     val listState = rememberLazyListState()
     val buttonItems = listOf(
         ButtonItem("Peste Porcina", R.drawable.augmented_reality_icon, "info_enfermedad_ppc",
-            Color(252,209,49,255)
-        ),
-        ButtonItem("Sarna Sarcoptica", R.drawable.sel_vr_sarna, "info_enfermedad_sarna",
             Color(211,58,84,255)
         ),
+        ButtonItem("Sarna Sarcoptica", R.drawable.sel_vr_sarna, "info_enfermedad_sarna",
+            Color(0,142,141,255)
+        ),
         ButtonItem("Neumonía Enzoótica", R.drawable.sel_vr_neumonia, "info_enfermedad_neumonia",
-            Color(175,180,43,255)
+            Color(137,73,136,255)
         ),
     )
     LazyColumn(
@@ -52,9 +54,15 @@ fun SelectEnfermedadesInfo(navController: NavHostController) {
             Spacer(modifier = Modifier.height(25.dp))
             Box(
                 modifier = Modifier
-                    .size(240.dp, 48.dp)
+                    .fillMaxWidth()
+                    .padding(horizontal = 32.dp, vertical = 4.dp)
                     .shadow(elevation = 4.dp, shape = RoundedCornerShape(24.dp))
-                    .background(color = Color.White)
+                    .border(
+                        width = 5.dp, // Ancho del borde
+                        color = buttonItem.color, // Color del borde
+                        shape = RoundedCornerShape(24.dp) // Bordes redondeados
+                    )
+                    .background(Color.White)
                     .clickable(onClick = {
                         navController.navigate(buttonItem.route)
                     }),
@@ -62,10 +70,10 @@ fun SelectEnfermedadesInfo(navController: NavHostController) {
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Start,
+                    horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(start = 15.dp)
+                        .padding(horizontal = 32.dp, vertical = 8.dp)
                 ) {
                     Text(
                         text = buttonItem.label,
@@ -79,7 +87,7 @@ fun SelectEnfermedadesInfo(navController: NavHostController) {
                         painter = painterResource(id = buttonItem.imageResource),
                         contentDescription = "Imagen de la enfermedad",
                         modifier = Modifier
-                            .size(30.dp)
+                            .size(40.dp)
                     )
                 }
             }
