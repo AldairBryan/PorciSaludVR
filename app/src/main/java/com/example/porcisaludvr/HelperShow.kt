@@ -46,11 +46,11 @@ fun ExpandableCard(
     description: String,
     descriptionFontSize: TextUnit = 19.sp,
     descriptionFontWeight: FontWeight = FontWeight.Normal,
-    descriptionMaxLines: Int = 4,
     shape: Shape = RoundedCornerShape(24.dp),
     padding: Dp = 12.dp,
-    colorBG: Color,
-    colorText: Color,
+    colorBG: Color = Color.White,
+    colorTitle: Color,
+    colorText: Color = Color.Black,
     fontText: FontFamily = Itim
 ) {
     var expandedState by remember { mutableStateOf(false) }
@@ -89,9 +89,8 @@ fun ExpandableCard(
                     fontSize = titleFontSize,
                     fontWeight = titleFontWeight,
                     fontFamily = fontText,
-                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    color = colorText
+                    color = colorTitle
                 )
                 IconButton(
                     modifier = Modifier
@@ -113,7 +112,6 @@ fun ExpandableCard(
                     fontSize = descriptionFontSize,
                     fontWeight = descriptionFontWeight,
                     fontFamily = fontText,
-                    maxLines = descriptionMaxLines,
                     overflow = TextOverflow.Ellipsis,
                     color = colorText
                 )
@@ -133,6 +131,6 @@ fun ExpandableCardPreview() {
                 "aliqua. Ut enim ad minim veniam, quis nostrud exercitation " +
                 "ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         colorBG = Color(211,58,84,255),
-        colorText = Color.White
+        colorTitle = Color.White
     )
 }

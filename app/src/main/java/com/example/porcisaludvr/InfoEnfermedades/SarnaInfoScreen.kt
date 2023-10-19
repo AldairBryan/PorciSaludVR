@@ -8,6 +8,5 @@ import com.example.porcisaludvr.ExpandableCard
 @Composable
 fun SarnaInfoScreen(navController: NavHostController){
 ExpandableCard(title = "Test", description = "asdasdd",
-    colorBG = Color(211,58,84,255),
-    colorText= Color.White)
+    colorTitle = Color(211,58,84,255))
 }
