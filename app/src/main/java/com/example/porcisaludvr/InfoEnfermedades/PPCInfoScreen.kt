@@ -26,11 +26,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.porcisaludvr.GetScreenHeight
-import com.example.porcisaludvr.GetScreenWidth
+import androidx.navigation.compose.rememberNavController
 import com.example.porcisaludvr.R
 import com.example.porcisaludvr.ui.theme.Itim
 
@@ -134,4 +134,11 @@ fun PPCInfoScreen(navController: NavHostController) {
                     textAlign = TextAlign.Center)
         }
     }
+}
+
+@Preview
+@Composable
+fun PPCInfoScreenPreview() {
+    // Puedes usar este preview para verificar cómo se ve la pantalla
+    PPCInfoScreen(navController = rememberNavController())
 }
