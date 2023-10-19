@@ -36,7 +36,7 @@ import com.example.porcisaludvr.ui.theme.Itim
 fun SelectEnfermedadesInfo(navController: NavHostController) {
     val listState = rememberLazyListState()
     val buttonItems = listOf(
-        ButtonItem("Peste Porcina", R.drawable.augmented_reality_icon, "info_enfermedad_ppc",
+        ButtonItem("Peste Porcina", R.drawable.sel_vr_ppc, "info_enfermedad_ppc",
             Color(211,58,84,255)
         ),
         ButtonItem("Sarna Sarcoptica", R.drawable.sel_vr_sarna, "info_enfermedad_sarna",
