@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.porcisaludvr.ExpandableCard
 import com.example.porcisaludvr.R
 import com.example.porcisaludvr.ui.theme.Itim
 
@@ -62,54 +63,60 @@ fun PPCInfoScreen(navController: NavHostController) {
                 .size(100.dp)
                 .background(Color.Transparent)
         )
-        var longText= """
-            La peste porcina clásica (PPC), también conocida como fiebre aftosa porcina, 
-            es una enfermedad viral altamente contagiosa que afecta a los cerdos.
-            La PPC es causada por un virus perteneciente al género Pestivirus, específicamente el virus de 
-            la peste porcina clásica. Este virus puede afectar a los cerdos domésticos y jabalíes, 
-            y se encuentra en todo el mundo.
-            """.trimIndent()
-        Text(
-            text = longText,
-            fontFamily = Itim,
-            fontSize = 19.sp,
-            textAlign = TextAlign.Left,
 
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 32.dp, vertical = 8.dp)
-
-        )
+        // Descripcion
+        ExpandableCard(title = "Descripcion",
+            description = """
+            Es una enfermedad viral altamente infectocontagiosa
+            de evolución casi siempre fatal que afecta a cerdos de
+todas las edades y razas, caracterizada por producir
+hemorragias en los órganos internos y la piel. El
+trastorno presenta varias formas clínicas que van desde
+muerte súbita hasta formas inaparentes con síntomas
+poco manifiestos.
+La enfermedad se transmite por contacto directo (vía
+respiratoria) o por vía digestiva, los animales enfermos
+que contagian los alimentos y el agua de bebida con
+orina, excremento, saliva y otras secreciones por donde
+eliminan el virus. También puede ser transmitida de
+forma mecánica por los piojos del cerdo, garrapatas.
+Asimismo las moscas, las gallinas y los pájaros pueden
+diseminar el mal a otras porquerizas o cerdos vecinos.
+Dada la relativa resistencia del virus en el ambiente
+los animales pueden infectarse cuando comparten
+bebederos, comederos o cualquier utensilio, así como
+instalaciones que hayan tenido contacto con animales
+enfermos.
+            """.trimIndent(),
+            colorBG = Color.White,
+            colorText = colorInfo)
         Spacer(modifier = Modifier.height(6.dp))
-        Text(text ="Sintomas",
-            fontFamily = Itim,
-            fontSize = 19.sp,
-            fontWeight = FontWeight.Bold,
-            color = colorInfo,
-            textAlign = TextAlign.Left)
-        Spacer(modifier = Modifier.height(1.dp)
-        )
-        Spacer(modifier = Modifier.height(6.dp))
-        var longText2= """
-            Fiebre: Los cerdos infectados pueden desarrollar fiebre alta.
-            Problemas respiratorios: Esto puede incluir tos y dificultad para respirar.
-            Problemas gastrointestinales: Los cerdos pueden experimentar diarrea y vómitos.
-            Lesiones cutáneas: Algunos cerdos pueden desarrollar lesiones cutáneas en forma de costras y erosiones en la piel.
-            Letargo: Los cerdos afectados suelen volverse letárgicos, deprimidos y pueden dejar de comer.
-            """.trimIndent()
-        Text(
-            text = longText2,
-            fontFamily = Itim,
-            fontSize = 19.sp,
-            textAlign = TextAlign.Left,
 
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 32.dp, vertical = 8.dp)
+        //Sintomas
+        ExpandableCard(title = "Sintomas",
+            description = """
+            En la forma hiperaguda o sobreaguda los cerdos pueden
+morir sin haberse visto enfermos (muerte súbita), por
+lo general se presenta a inicio de los brotes.
+La forma aguda es la que más se presenta y se caracteriza
+por depresión marcada, inapetencia, (algunos cerdos
+continúan comiendo, pero no la cantidad acostumbrada),
+fiebre, conjuntivitis permanecen echados y los jóvenes
+tienden a amontonarse; se miran sofocados y con
+secreciones por la nariz. Aparecen petequias en la piel
+del abdomen, cara interna de los muslos, axilas, patas y
+puntas de las orejas.
+Algunos animales están estreñidos, pero otros presentan
+diarrea con sangre (disentería) puede presentarse
+vómito el cual es un signo bastante frecuente. Pueden
+encontrarse animales con trastornos nerviosos tales
+como andar de lado, caminar hacia atrás; al caminar
+arrastran un poco las patas o andan en círculos, otros
+presentan ceguera, otros pueden manifestar temblores, 
+            """.trimIndent(),
+            colorBG = colorInfo,
+            colorText = Color.White)
 
-        )
-
-        Spacer(modifier = Modifier.height(10.dp))
         Button(
             onClick = {
                 // Navega a la ruta cuando se hace clic en el botón
