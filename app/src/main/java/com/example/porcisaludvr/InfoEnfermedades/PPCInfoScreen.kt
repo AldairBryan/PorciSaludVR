@@ -64,8 +64,8 @@ fun PPCInfoScreen(navController: NavHostController) {
                 .background(Color.Transparent)
         )
 
-        // Descripcion
-        ExpandableCard(title = "Descripcion",
+        // Informacion
+        ExpandableCard(title = "Informacion",
             description = " Es una enfermedad viral altamente infectocontagiosa de evolución casi siempre fatal que afecta a cerdos de" +
                     "todas las edades y razas, caracterizada por producir" +
                     "hemorragias en los órganos internos y la piel. El" +
