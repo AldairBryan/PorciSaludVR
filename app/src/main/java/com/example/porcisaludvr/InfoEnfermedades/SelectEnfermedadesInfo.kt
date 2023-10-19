@@ -37,13 +37,13 @@ fun SelectEnfermedadesInfo(navController: NavHostController) {
     val listState = rememberLazyListState()
     val buttonItems = listOf(
         ButtonItem("Peste Porcina", R.drawable.sel_vr_ppc, "info_enfermedad_ppc",
-            Color(211,58,84,255)
-        ),
-        ButtonItem("Sarna Sarcoptica", R.drawable.sel_vr_sarna, "info_enfermedad_sarna",
             Color(0,142,141,255)
         ),
-        ButtonItem("Neumonía Enzoótica", R.drawable.sel_vr_neumonia, "info_enfermedad_neumonia",
+        ButtonItem("Sarna Sarcoptica", R.drawable.sel_vr_sarna, "info_enfermedad_sarna",
             Color(137,73,136,255)
+        ),
+        ButtonItem("Neumonía Enzoótica", R.drawable.sel_vr_neumonia, "info_enfermedad_neumonia",
+            Color(211,58,84,255)
         ),
     )
     LazyColumn(

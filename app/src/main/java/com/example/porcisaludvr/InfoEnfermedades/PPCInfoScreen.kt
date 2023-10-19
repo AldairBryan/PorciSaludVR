@@ -38,7 +38,7 @@ import com.example.porcisaludvr.ui.theme.Itim
 @Composable
 fun PPCInfoScreen(navController: NavHostController) {
 
-    var colorInfo: Color = Color(211,58,84,255)
+    var colorInfo: Color = Color(0,142,141,255)
     Column(
         modifier = Modifier
             .fillMaxSize()

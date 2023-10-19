@@ -34,7 +34,7 @@ import com.example.porcisaludvr.ui.theme.Itim
 
 @Composable
 fun SarnaInfoScreen(navController: NavHostController){
-    var colorInfo: Color = Color(0,142,141,255)
+    var colorInfo: Color = Color(137,73,136,255)
     Column(
         modifier = Modifier
             .fillMaxSize()

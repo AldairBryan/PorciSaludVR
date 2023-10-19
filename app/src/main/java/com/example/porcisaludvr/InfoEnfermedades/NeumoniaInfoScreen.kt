@@ -34,7 +34,7 @@ import com.example.porcisaludvr.ui.theme.Itim
 
 @Composable
 fun NeumoniaInfoScreen(navController: NavHostController) {
-    var colorInfo: Color = Color(137,73,136,255)
+    var colorInfo: Color = Color(211,58,84,255)
     Column(
         modifier = Modifier
             .fillMaxSize()
