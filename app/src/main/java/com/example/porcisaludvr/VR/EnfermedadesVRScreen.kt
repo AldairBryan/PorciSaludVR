@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -39,6 +40,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.porcisaludvr.ExpandableCard
 import com.example.porcisaludvr.R
 import com.example.porcisaludvr.ui.theme.Itim
 import com.example.porcisaludvr.ui.theme.Translucent
@@ -166,7 +168,7 @@ fun ARScreen(model:String) {
             Button(onClick = {
                 modelNode.value?.anchor()
             }, modifier = Modifier.align(Alignment.Center)) {
-                Text(text = "Colocar")
+                showTextTitleHelper(colorGeneral = Color.Magenta, titulo = "Colocar")
             }
         }
     }
@@ -179,23 +181,13 @@ fun ARScreen(model:String) {
         )
         Log.e("errorloading","ERROR LOADING MODEL")
     }
-    showTitle(num = model)
+    Column{
+        showTitle(num = model)
+        showInformacionEnfermedad(num = model)
+    }
 }
 
-@Composable
-fun TextOverlay(text: String, modifier: Modifier = Modifier) {
-    Text(
-        text = text,
-        overflow = TextOverflow.Ellipsis,
-        fontSize = 19.sp,
-        fontWeight = FontWeight.Normal,
-        fontFamily = Itim,
-        color = Color.White,
-        modifier = modifier
-            .background(Color.Black)
-            .padding(16.dp)
-    )
-}
+
 @Composable
 fun showTitle (num: String){
     var textTitle: String = ""
@@ -211,14 +203,39 @@ fun showTitle (num: String){
     }
     showTextTitleHelper(colorGeneral = colorText, titulo = textTitle)
 }
+
+@Composable
+fun showInformacionEnfermedad(num: String){
+    var descriptionEnfermedad: String = ""
+    var colorText: Color = Color(0,142,255,141)
+    when (num){
+        "ppc" -> { descriptionEnfermedad = "La PPC es una enfermedad viral altamente contagiosa, los sintomas incluyen: " +
+                "Anorexia, los cerdos dejan de comer; Cojera y debilidad en las extremidades; Hemorragias en la piel y las mucosas" +
+                "y Trastornos respiratorios"
+            colorText= Color(0, 142, 141, 255)}
+        "sarna" -> { descriptionEnfermedad = "La sarna sarcoptica es una infección parasitaria de la piel en cerdos, causada por el" +
+                " ácaro Sarcoptes scabiei. Los síntomas son : Picazón intensa y constante; Pérdida de pelo y erupciones " +
+                "cutáneas; Engrosamiento de la piel; Costras y heridas por rascado; Pérdida de peso debido a la incomodidad y el " +
+                "estrés; Costras en las orejas y extremidades."
+            colorText = Color(137, 73, 136, 255)}
+        "neumonia" -> { descriptionEnfermedad = "La neumonía enzoótica es una enfermedad respiratoria. Los sintomas son: " +
+                "Tos persistente y grave; Dificultad respiratoria, con respiración rápida y superficial; Fiebre; " +
+                "Secreciones nasales y oculares; Disminución del apetito; Letargo y " +
+                "Reducción del crecimiento y ganancia de peso en cerdos jóvenes. "
+            colorText = Color(211, 58, 84, 255)}
+    }
+    ExpandableCard(title = "Informacion", description = descriptionEnfermedad, colorTitle = colorText,
+        colorText = colorText, colorBG = Color.Transparent, colorBorder = colorText,
+        titleFontSize = 23.sp, descriptionFontSize = 15.sp)
+}
 @Composable
 fun showTextTitleHelper(colorGeneral: Color, titulo: String){
     Box(
         modifier = Modifier
-            .padding(24.dp)
+            .padding(horizontal = 32.dp, vertical = 8.dp)
             .shadow(elevation = 4.dp, shape = RoundedCornerShape(24.dp))
             .border(
-                width = 5.dp, // Ancho del borde
+                width = 4.dp, // Ancho del borde
                 color = colorGeneral, // Color del borde
                 shape = RoundedCornerShape(24.dp) // Bordes redondeados
             )
@@ -233,7 +250,6 @@ fun showTextTitleHelper(colorGeneral: Color, titulo: String){
                 textAlign = TextAlign.Left,
                 modifier = Modifier.padding(10.dp,5.dp)
             )
-            Spacer(modifier = Modifier.width(13.dp))
     }
 }
 data class  Enfermedad(var name:String, var imageID:Int)

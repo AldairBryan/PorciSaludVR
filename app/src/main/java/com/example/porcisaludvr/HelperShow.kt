@@ -5,6 +5,7 @@ import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -51,7 +52,8 @@ fun ExpandableCard(
     colorBG: Color = Color.White,
     colorTitle: Color,
     colorText: Color = Color.Black,
-    fontText: FontFamily = Itim
+    fontText: FontFamily = Itim,
+    colorBorder: Color = Color.Transparent
 ) {
     var expandedState by remember { mutableStateOf(false) }
     val rotationState by animateFloatAsState(
@@ -62,6 +64,9 @@ fun ExpandableCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 32.dp, vertical = 8.dp)
+            .border(width = 4.dp,
+                color = colorBorder,
+                shape = RoundedCornerShape(24.dp))
             .animateContentSize(
                 animationSpec = tween(
                     durationMillis = 300,
