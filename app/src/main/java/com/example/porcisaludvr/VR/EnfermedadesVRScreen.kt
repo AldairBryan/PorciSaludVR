@@ -94,18 +94,20 @@ fun Enfermedades(startIndex: Int, modifier: Modifier, onClick:(String)->Unit) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceAround
     ) {
-        IconButton(onClick = {
+        IconButton(modifier = Modifier.size(95.dp) ,
+            onClick = {
             updateIndex(-1)
         }) {
-            Icon(painter = painterResource(id = R.drawable.baseline_arrow_back_ios_24), contentDescription ="previous" )
+            Icon(painter = painterResource(id = R.drawable.baseline_arrow_back_ios_24), modifier = Modifier.size(95.dp) ,contentDescription ="previous" )
         }
 
         CircularImage(imageId = itemsList[currentIndex].imageID)
 
-        IconButton(onClick = {
+        IconButton(modifier = Modifier.size(95.dp) ,
+            onClick = {
             updateIndex(1)
         }) {
-            Icon(painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24), contentDescription ="next")
+            Icon(painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24),modifier = Modifier.size(95.dp) , contentDescription ="next")
         }
     }
 }
@@ -116,11 +118,11 @@ fun CircularImage(
     imageId: Int
 ) {
     Box(modifier = modifier
-        .size(140.dp)
+        .size(95.dp)
         .clip(CircleShape)
         .border(width = 3.dp, Translucent, CircleShape)
     ){
-        Image(painter = painterResource(id = imageId), contentDescription = null, modifier = Modifier.size(140.dp), contentScale = ContentScale.FillBounds)
+        Image(painter = painterResource(id = imageId), contentDescription = null, modifier = Modifier.size(95.dp), contentScale = ContentScale.FillBounds)
     }
 }
 
