@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
@@ -166,11 +167,18 @@ fun ARScreen(model:String) {
                 planeRenderer.isVisible = false
             }
         )
+        var colorAux: Color= Color.White
+        when (model){
+            "ppc" -> {colorAux= Color(0, 142, 141, 255)}
+            "sarna" -> { colorAux = Color(137, 73, 136, 255)}
+            "neumonia" -> { colorAux = Color(211, 58, 84, 255)}
+        }
         if(placeModelButton.value){
-            Button(onClick = {
+            Button(colors = ButtonDefaults.buttonColors(Color.Transparent),
+                onClick = {
                 modelNode.value?.anchor()
             }, modifier = Modifier.align(Alignment.Center)) {
-                showTextTitleHelper(colorGeneral = Color.Magenta, titulo = "Colocar")
+                showTextTitleHelper(colorGeneral = colorAux, titulo = "Colocar")
             }
         }
     }
@@ -251,6 +259,7 @@ fun showTextTitleHelper(colorGeneral: Color, titulo: String){
                 color = colorGeneral,
                 textAlign = TextAlign.Left,
                 modifier = Modifier.padding(10.dp,5.dp)
+                    .background(Color.Transparent)
             )
     }
 }
