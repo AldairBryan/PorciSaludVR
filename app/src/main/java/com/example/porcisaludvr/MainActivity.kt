@@ -38,6 +38,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.porcisaludvr.BCR.TestPig
 import com.example.porcisaludvr.InfoEnfermedades.NeumoniaInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.PPCInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.SarnaInfoScreen
@@ -65,6 +66,9 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("info_screen") {
                         InfoScreen(navController)
+                    }
+                    composable("test_pig"){
+                        TestPig(navController)
                     }
 
                     //Realidad Aumentada Screens
