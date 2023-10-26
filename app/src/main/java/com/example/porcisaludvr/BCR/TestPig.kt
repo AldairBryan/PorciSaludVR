@@ -27,7 +27,9 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun TestPig (navController: NavHostController){
-    var respuesta: String = ""
+    var respuesta by remember {
+        mutableStateOf("")
+    }
     var currentQuestionIndex by remember { mutableStateOf(0) }
     val questions = listOf(
         Question("Pregunta 1", listOf("Opción A", "Opción B", "Opción C")),
@@ -37,7 +39,7 @@ fun TestPig (navController: NavHostController){
     )
 
     fun onNextClicked(selectedAnswer: String) {
-        Log.d("INFO","SELECCIONADO: "+selectedAnswer.toString())
+        Log.d("INFO","SELECCIONADO: "+selectedAnswer)
         respuesta += selectedAnswer
         currentQuestionIndex++
     }
@@ -124,6 +126,7 @@ fun QuestionItem(question: Question, onNextClicked: (String) -> Unit) {
                     value = customAnswer,
                     onValueChange = {
                         customAnswer = it
+                        selectedAnswer  = it
                         isAnswerSelected = true
                     },
                     label = { Text("Ingresa tu respuesta") },
