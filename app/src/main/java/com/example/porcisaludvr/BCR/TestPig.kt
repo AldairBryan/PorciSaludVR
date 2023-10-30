@@ -44,6 +44,10 @@ fun TestPig (navController: NavHostController){
         currentQuestionIndex++
     }
 
+    fun procesarString(input: String): String {
+        val javaInstace = JCollibriHelper()
+        return javaInstace.analizarCaso(input)
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -55,6 +59,7 @@ fun TestPig (navController: NavHostController){
             }
             Log.d("INFO",respuesta)
         } else {
+            respuesta= procesarString(respuesta)
             Text(
                 text = "Puntuación Final: $respuesta",
                 //style = MaterialTheme.typography.h6
@@ -113,6 +118,7 @@ fun QuestionItem(question: Question, onNextClicked: (String) -> Unit) {
                 selected = "Respuesta personalizada" == selectedAnswer,
                 onClick = {
                     selectedAnswer = "Respuesta personalizada"
+                    customAnswer=""
                     isAnswerSelected = true
                 }
             )
@@ -122,12 +128,11 @@ fun QuestionItem(question: Question, onNextClicked: (String) -> Unit) {
             Spacer(modifier = Modifier.width(16.dp))
 
             if ("Respuesta personalizada" == selectedAnswer) {
-                OutlinedTextField(
+                    OutlinedTextField(
                     value = customAnswer,
                     onValueChange = {
                         customAnswer = it
-                        selectedAnswer  = it
-                        isAnswerSelected = true
+                        isAnswerSelected = it.isNotBlank()
                     },
                     label = { Text("Ingresa tu respuesta") },
                     modifier = Modifier
