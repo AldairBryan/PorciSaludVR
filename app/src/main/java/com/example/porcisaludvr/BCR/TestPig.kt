@@ -114,7 +114,6 @@ fun QuestionItem(question: Question, onNextClicked: (String) -> Unit) {
                 onClick = {
                     selectedAnswer = "Respuesta personalizada"
                     customAnswer=""
-                    isAnswerSelected = true
                 }
             )
             Spacer(modifier = Modifier.width(8.dp))
@@ -145,7 +144,7 @@ fun QuestionItem(question: Question, onNextClicked: (String) -> Unit) {
                     selectedAnswer = ""
                 }
             },
-            enabled = isAnswerSelected
+            enabled = selectedAnswer.isNotBlank()
         ) {
             Text(text = "Siguiente")
         }
