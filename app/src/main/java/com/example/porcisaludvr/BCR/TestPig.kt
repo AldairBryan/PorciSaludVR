@@ -39,7 +39,6 @@ fun TestPig (navController: NavHostController){
     )
 
     fun onNextClicked(selectedAnswer: String) {
-        Log.d("INFO","SELECCIONADO: "+selectedAnswer)
         respuesta += selectedAnswer
         currentQuestionIndex++
     }
@@ -57,12 +56,11 @@ fun TestPig (navController: NavHostController){
             QuestionItem(questions[currentQuestionIndex]){ answer ->
                 onNextClicked(answer)
             }
-            Log.d("INFO",respuesta)
         } else {
+            Log.d("INFO","respuestas: "+respuesta)
             respuesta= procesarString(respuesta)
             Text(
                 text = "Puntuación Final: $respuesta",
-                //style = MaterialTheme.typography.h6
             )
         }
     }
@@ -83,10 +81,7 @@ fun QuestionItem(question: Question, onNextClicked: (String) -> Unit) {
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        Text(
-            text = question.text,
-            //style = MaterialTheme.typography.h5
-        )
+        Text(text = question.text,)
 
         Spacer(modifier = Modifier.height(8.dp))
 
