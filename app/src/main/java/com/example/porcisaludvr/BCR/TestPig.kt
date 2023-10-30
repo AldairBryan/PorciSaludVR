@@ -74,7 +74,8 @@ fun QuestionItem(question: Question, onNextClicked: (String) -> Unit) {
     var customAnswer by remember {
         mutableStateOf("")
     }
-    var isAnswerSelected by remember { mutableStateOf(false) }
+    var isAnswerSelected by remember { mutableStateOf(false)
+    }
 
     Column(
         modifier = Modifier
@@ -140,7 +141,11 @@ fun QuestionItem(question: Question, onNextClicked: (String) -> Unit) {
         Button(
             onClick = {
                 if (isAnswerSelected) {
-                    onNextClicked(selectedAnswer)
+                    if (selectedAnswer == "Respuesta personalizada"){
+                        onNextClicked(customAnswer)
+                    }else {
+                        onNextClicked(selectedAnswer)
+                    }
                     selectedAnswer = ""
                 }
             },
