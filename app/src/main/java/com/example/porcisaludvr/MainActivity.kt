@@ -39,6 +39,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.porcisaludvr.BCR.TestPig
+import com.example.porcisaludvr.GestionCerdos.GeneralCerdosScreen
 import com.example.porcisaludvr.InfoEnfermedades.NeumoniaInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.PPCInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.SarnaInfoScreen
@@ -64,11 +65,15 @@ class MainActivity : ComponentActivity() {
                     composable("enfermedades_cerdos"){
                         SelectEnfermedadesInfo(navController)
                     }
-                    composable("info_screen") {
-                        InfoScreen(navController)
-                    }
+
                     composable("test_pig"){
                         TestPig(navController)
+                    }
+                    composable("gestion_pig"){
+                        GeneralCerdosScreen(navController)
+                    }
+                    composable("info_screen") {
+                        InfoScreen(navController)
                     }
 
                     //Realidad Aumentada Screens
@@ -106,7 +111,7 @@ fun MainScreen(navController: NavHostController) {
         ButtonItem("Enfermedades", R.drawable.pig_sick_icon, "enfermedades_cerdos",Color(211,58,84,255)),
         ButtonItem("Sobre el Cuidado", R.drawable.pig_breeding_icon, "cuidados_cerdos",Color(175,180,43,255)),
         ButtonItem("¿Esta enfermo?", R.drawable.is_sick_icon, "test_pig",Color(156,52,194,255)),
-        ButtonItem("Noticias", R.drawable.news_icon, "noticias_cerdos",Color(143,201,195,255)),
+        ButtonItem("Noticias", R.drawable.news_icon, "gestion_pig",Color(143,201,195,255)),
         ButtonItem("Sobre  Nosotros", R.drawable.about_us_icon, "info_screen",Color(0,200,0,255))
     )
     Spacer(modifier = Modifier.height(25.dp))
