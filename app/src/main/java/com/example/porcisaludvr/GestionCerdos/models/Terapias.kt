@@ -17,8 +17,3 @@ data class Terapias(
     val diagnosticoId: Int,
 )
 
-@Entity(tableName = "terapias_medicamentos_cross_ref", primaryKeys = ["terapiaId", "medicamentoId"])
-data class TerapiaMedicamentoCrossRef(
-    val terapiaId: Int,
-    val medicamentoId: Int
-)

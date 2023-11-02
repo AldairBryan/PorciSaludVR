@@ -10,7 +10,7 @@ data class TerapiaConMedicamento(
         entity = Medicamentos::class,
         parentColumn = "id",
         entityColumn = "medicamentoId",
-        associateBy = Junction(TerapiaMedicamentoCrossRef::class)
+        associateBy = Junction(TerapiasMedicamentosCrossRef::class)
     )
     val medicamentos: List<Medicamentos>
 )
