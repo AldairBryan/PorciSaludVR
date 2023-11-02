@@ -11,10 +11,14 @@ data class Terapias(
     val id: Int = 0,
     @ColumnInfo("fecha")
     val fecha: Date,
-    @ColumnInfo("medicamentoId")
-    val medicamentoId: Int,
     @ColumnInfo("observaciones")
     val observaciones: String,
     @ColumnInfo("diagnosticoId")
     val diagnosticoId: Int,
+)
+
+@Entity(tableName = "terapias_medicamentos_cross_ref", primaryKeys = ["terapiaId", "medicamentoId"])
+data class TerapiaMedicamentoCrossRef(
+    val terapiaId: Int,
+    val medicamentoId: Int
 )
