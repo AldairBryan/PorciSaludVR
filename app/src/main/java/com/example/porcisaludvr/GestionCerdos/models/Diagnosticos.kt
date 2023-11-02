@@ -9,8 +9,10 @@ import java.util.Date
 data class Diagnosticos(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    //Cerdo
-    //Estado
+    @ColumnInfo("cerdoId")
+    val cerdoId: Int,
+    @ColumnInfo("estadoId")
+    val estadoId: Int,
     @ColumnInfo("fecha")
     val fecha: Date,
     @ColumnInfo("sintomas")

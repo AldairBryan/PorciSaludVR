@@ -11,8 +11,10 @@ data class Terapias(
     val id: Int = 0,
     @ColumnInfo("fecha")
     val fecha: Date,
-    //Medicamento
+    @ColumnInfo("medicamentoId")
+    val medicamentoId: Int,
     @ColumnInfo("observaciones")
     val observaciones: String,
-    //Diagnostico
+    @ColumnInfo("diagnosticoId")
+    val diagnosticoId: Int,
 )
