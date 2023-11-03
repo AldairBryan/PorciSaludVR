@@ -1,12 +1,13 @@
 package com.example.porcisaludvr.GestionCerdos.room
 
+import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.porcisaludvr.GestionCerdos.models.Terapias
 import kotlinx.coroutines.flow.Flow
-
+@Dao
 interface TerapiasDatabaseDao {
     @Query("SELECT * FROM terapias")
     fun obtenerTerapias(): Flow<List<Terapias>>

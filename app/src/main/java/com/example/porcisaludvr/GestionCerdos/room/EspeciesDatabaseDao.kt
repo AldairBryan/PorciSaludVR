@@ -1,12 +1,13 @@
 package com.example.porcisaludvr.GestionCerdos.room
 
+import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.porcisaludvr.GestionCerdos.models.Especies
 import kotlinx.coroutines.flow.Flow
-
+@Dao
 interface EspeciesDatabaseDao {
     @Query("SELECT * FROM especies")
     fun obtenerEspecies(): Flow<List<Especies>>

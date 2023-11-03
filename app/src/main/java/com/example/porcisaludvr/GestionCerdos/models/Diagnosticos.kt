@@ -3,8 +3,6 @@ package com.example.porcisaludvr.GestionCerdos.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.Date
-
 @Entity(tableName = "diagnosticos")
 data class Diagnosticos(
     @PrimaryKey(autoGenerate = true)
@@ -14,7 +12,7 @@ data class Diagnosticos(
     @ColumnInfo("estadoId")
     val estadoId: Int,
     @ColumnInfo("fecha")
-    val fecha: Date,
+    val fecha: String,
     @ColumnInfo("sintomas")
     val sintomas: String,
     @ColumnInfo("observaciones")

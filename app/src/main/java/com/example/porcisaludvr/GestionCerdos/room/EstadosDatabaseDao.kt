@@ -1,12 +1,13 @@
 package com.example.porcisaludvr.GestionCerdos.room
 
+import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.porcisaludvr.GestionCerdos.models.Estados
 import kotlinx.coroutines.flow.Flow
-
+@Dao
 interface EstadosDatabaseDao {
     @Query("SELECT * FROM estados")
     fun obtenerEstados(): Flow<List<Estados>>

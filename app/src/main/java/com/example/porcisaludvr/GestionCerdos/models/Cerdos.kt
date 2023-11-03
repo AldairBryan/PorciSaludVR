@@ -3,7 +3,6 @@ package com.example.porcisaludvr.GestionCerdos.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.Date
 
 @Entity(tableName = "cerdos")
 data class Cerdos(
@@ -14,7 +13,7 @@ data class Cerdos(
     @ColumnInfo("peso")
     val peso: Double,
     @ColumnInfo("fecha_obtencion")
-    val fecha_obtencion: Date,
+    val fecha_obtencion: String,
     @ColumnInfo("especieId")
     val especieId: Int,
 )

@@ -1,12 +1,13 @@
 package com.example.porcisaludvr.GestionCerdos.room
 
+import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.porcisaludvr.GestionCerdos.models.TerapiasMedicamentosCrossRef
 import kotlinx.coroutines.flow.Flow
-
+@Dao
 interface TerMedCrossDatabaseDao {
     @Query("SELECT * FROM terapias_medicamentos_cross_ref")
     fun obtenerAllTerMedCross(): Flow<List<TerapiasMedicamentosCrossRef>>
