@@ -16,4 +16,11 @@ import com.example.porcisaludvr.GestionCerdos.models.TerapiasMedicamentosCrossRe
     exportSchema = false
 )
 abstract class GestionDatabase:RoomDatabase() {
+    abstract fun especiesDao(): EspeciesDatabaseDao
+    abstract fun estadosDao(): EstadosDatabaseDao
+    abstract fun medicamentosDao(): MedicamentosDatabaseDao
+    abstract fun cerdosDao(): CerdosDatabaseDao
+    abstract fun terapiasDao(): TerapiasDatabaseDao
+    abstract fun diagnosticosDao(): DiagnosticosDatabaseDao
+    abstract fun terapiaMedicamentoCrossDao(): TerMedCrossDatabaseDao
 }
