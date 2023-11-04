@@ -1,5 +1,6 @@
 package com.example.porcisaludvr
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -38,8 +39,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.room.Room
 import com.example.porcisaludvr.BCR.TestPig
-import com.example.porcisaludvr.GestionCerdos.GeneralCerdosScreen
+import com.example.porcisaludvr.GestionCerdos.NavManager
+import com.example.porcisaludvr.GestionCerdos.room.GestionDatabase
+import com.example.porcisaludvr.GestionCerdos.viewmodels.CerdosViewModel
 import com.example.porcisaludvr.InfoEnfermedades.NeumoniaInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.PPCInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.SarnaInfoScreen
@@ -69,9 +73,9 @@ class MainActivity : ComponentActivity() {
                     composable("test_pig"){
                         TestPig(navController)
                     }
-                    composable("gestion_pig"){
+                    /*composable("gestion_pig"){
                         GeneralCerdosScreen(navController)
-                    }
+                    }*/
                     composable("info_screen") {
                         InfoScreen(navController)
                     }
@@ -98,6 +102,7 @@ class MainActivity : ComponentActivity() {
                         NeumoniaInfoScreen(navController)
                     }
                 }
+                inicializarBD(context = this)
             }
         }
     }
@@ -111,7 +116,7 @@ fun MainScreen(navController: NavHostController) {
         ButtonItem("Enfermedades", R.drawable.pig_sick_icon, "enfermedades_cerdos",Color(211,58,84,255)),
         ButtonItem("Sobre el Cuidado", R.drawable.pig_breeding_icon, "cuidados_cerdos",Color(175,180,43,255)),
         ButtonItem("¿Esta enfermo?", R.drawable.is_sick_icon, "test_pig",Color(156,52,194,255)),
-        ButtonItem("Noticias", R.drawable.news_icon, "gestion_pig",Color(143,201,195,255)),
+        ButtonItem("Gestion", R.drawable.news_icon, "gestion_pig",Color(143,201,195,255)),
         ButtonItem("Sobre  Nosotros", R.drawable.about_us_icon, "info_screen",Color(0,200,0,255))
     )
     Spacer(modifier = Modifier.height(25.dp))
@@ -199,4 +204,12 @@ fun GetScreenHeight(): Dp {
     // val screenWidthPixels = screenWidth.toPx().toInt()
 
     return screenHeight.dp
+}
+
+@Composable
+fun inicializarBD(context: Context){
+    val database= Room.databaseBuilder(context, GestionDatabase::class.java, "db_gestion").build()
+    val daoCerdos = database.cerdosDao()
+    val cerdosViewModel = CerdosViewModel(daoCerdos)
+    NavManager(viewModel = cerdosViewModel)
 }

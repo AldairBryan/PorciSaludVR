@@ -7,6 +7,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.porcisaludvr.GestionCerdos.viewmodels.CerdosViewModel
+import com.example.porcisaludvr.GestionCerdos.views.cerdos.CerdosAgregarView
+import com.example.porcisaludvr.GestionCerdos.views.cerdos.CerdosEditarView
 import com.example.porcisaludvr.GestionCerdos.views.cerdos.CerdosInicioView
 
 @Composable
