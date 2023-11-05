@@ -44,6 +44,7 @@ import com.example.porcisaludvr.BCR.TestPig
 import com.example.porcisaludvr.GestionCerdos.NavManager
 import com.example.porcisaludvr.GestionCerdos.room.GestionDatabase
 import com.example.porcisaludvr.GestionCerdos.viewmodels.CerdosViewModel
+import com.example.porcisaludvr.GestionCerdos.viewmodels.DiagnosticosViewModel
 import com.example.porcisaludvr.GestionCerdos.viewmodels.EspeciesViewModel
 import com.example.porcisaludvr.GestionCerdos.viewmodels.MedicamentosViewModel
 import com.example.porcisaludvr.InfoEnfermedades.NeumoniaInfoScreen
@@ -215,12 +216,15 @@ fun inicializarBD(context: Context){
     val daoCerdos = database.cerdosDao()
     val daoMedicamentos = database.medicamentosDao()
     val daoEspecies = database.especiesDao()
+    val daoDiagnosticos = database.diagnosticosDao()
 
     val cerdosViewModel = CerdosViewModel(daoCerdos)
     val medicamentosViewModel = MedicamentosViewModel(daoMedicamentos)
     val especiesViewModel = EspeciesViewModel(daoEspecies)
+    val diagnosticosViewModel = DiagnosticosViewModel(daoDiagnosticos)
 
     NavManager(viewModelCerdos = cerdosViewModel,
         viewModelMedicamentos = medicamentosViewModel,
-        viewModelEspecies = especiesViewModel)
+        viewModelEspecies = especiesViewModel,
+        viewModelDiagnosticos = diagnosticosViewModel)
 }
