@@ -1,11 +1,10 @@
-package com.example.porcisaludvr.GestionCerdos.views.medicamentos
+package com.example.porcisaludvr.GestionCerdos.views.especies
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
@@ -27,21 +26,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.porcisaludvr.GestionCerdos.models.Medicamentos
-import com.example.porcisaludvr.GestionCerdos.viewmodels.MedicamentosViewModel
+import com.example.porcisaludvr.GestionCerdos.models.Especies
+import com.example.porcisaludvr.GestionCerdos.viewmodels.EspeciesViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MedicamentosEditarView(navController: NavController, viewModel: MedicamentosViewModel,
-                           id: Int, medicamento: String?, precio: Double?, descripcion: String?){
+fun EspeciesEditarView(navController: NavController, viewModel: EspeciesViewModel,
+                       id: Int, especie: String?, informacion: String?){
     Scaffold (
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text(text = "Editar Medicamentos", color= Color.White, fontWeight = FontWeight.Bold)
+                    Text(text = "Editar Especie", color= Color.White, fontWeight = FontWeight.Bold)
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary
@@ -56,17 +54,16 @@ fun MedicamentosEditarView(navController: NavController, viewModel: Medicamentos
             )
         }
     ){
-        ContentMedicamentosEditarView(it, navController, viewModel, id, medicamento, precio, descripcion)
+        ContentEspeciesEditarView(it, navController, viewModel, id, especie, informacion)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ContentMedicamentosEditarView(it: PaddingValues, navController: NavController, viewModel: MedicamentosViewModel,
-                                  id: Int, medicamento: String?, precio: Double?, descripcion: String?){
-    var medicamento by remember { mutableStateOf(medicamento) }
-    var precio by remember { mutableStateOf(precio.toString()) }
-    var descripcion by remember { mutableStateOf(descripcion) }
+fun ContentEspeciesEditarView(it: PaddingValues, navController: NavController, viewModel: EspeciesViewModel,
+                              id: Int, especie: String?, informacion: String?){
+    var especie by remember { mutableStateOf(especie) }
+    var informacion by remember { mutableStateOf(informacion) }
     Column (
         modifier = Modifier
             .padding(it)
@@ -75,37 +72,27 @@ fun ContentMedicamentosEditarView(it: PaddingValues, navController: NavControlle
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         OutlinedTextField(
-            value = medicamento?: "",
-            onValueChange = {medicamento = it},
-            label = { Text(text = "Medicamento") },
+            value = especie?: "",
+            onValueChange = {especie = it},
+            label = { Text(text = "Especie") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 30.dp)
                 .padding(bottom = 15.dp)
         )
         OutlinedTextField(
-            value = precio?: "",
-            onValueChange = {precio = it},
-            label = { Text(text = "Precio") },
+            value = informacion?: "",
+            onValueChange = {informacion = it},
+            label = { Text(text = "Informacion") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 30.dp)
                 .padding(bottom = 15.dp),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
-        OutlinedTextField(
-            value = descripcion?: "",
-            onValueChange = {descripcion = it},
-            label = { Text(text = "Descripcion") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 30.dp)
-                .padding(bottom = 15.dp)
         )
         Button(
             onClick = {
-                val medicamento = Medicamentos ( medicamento = medicamento!!, precio = precio.toDouble()!!, descripcion = descripcion!!)
-                viewModel.actualizarMedicamento(medicamento)
+                val especie = Especies ( especie = especie!!, informacion = informacion!!)
+                viewModel.actualizarEspecie(especie)
                 navController.popBackStack()
             }
         ) {

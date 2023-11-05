@@ -7,17 +7,22 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.porcisaludvr.GestionCerdos.viewmodels.CerdosViewModel
+import com.example.porcisaludvr.GestionCerdos.viewmodels.EspeciesViewModel
 import com.example.porcisaludvr.GestionCerdos.viewmodels.MedicamentosViewModel
 import com.example.porcisaludvr.GestionCerdos.views.cerdos.CerdosAgregarView
 import com.example.porcisaludvr.GestionCerdos.views.cerdos.CerdosEditarView
 import com.example.porcisaludvr.GestionCerdos.views.cerdos.CerdosInicioView
+import com.example.porcisaludvr.GestionCerdos.views.especies.EspeciesAgregarView
+import com.example.porcisaludvr.GestionCerdos.views.especies.EspeciesEditarView
+import com.example.porcisaludvr.GestionCerdos.views.especies.EspeciesInicioView
 import com.example.porcisaludvr.GestionCerdos.views.medicamentos.MedicamentosAgregarView
 import com.example.porcisaludvr.GestionCerdos.views.medicamentos.MedicamentosEditarView
 import com.example.porcisaludvr.GestionCerdos.views.medicamentos.MedicamentosInicioView
 
 @Composable
 fun NavManager(viewModelCerdos: CerdosViewModel,
-               viewModelMedicamentos: MedicamentosViewModel){
+               viewModelMedicamentos: MedicamentosViewModel,
+               viewModelEspecies: EspeciesViewModel){
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "gestion_pig"){
@@ -63,6 +68,26 @@ fun NavManager(viewModelCerdos: CerdosViewModel,
                 it.arguments?.getDouble("precio"),
                 it.arguments?.getString("descripcion"),
                 )
+        }
+
+        //Especies
+        composable("gestion_especies"){
+            EspeciesInicioView(navController, viewModelEspecies)
+        }
+        composable("gestion_especies_agregar"){
+            EspeciesAgregarView(navController, viewModelEspecies)
+        }
+        composable("gestion_especies_editar/{id}/{especie}/{informacion}", arguments = listOf(
+            navArgument("id"){type= NavType.IntType},
+            navArgument("especie"){type= NavType.StringType},
+            navArgument("informacion"){type= NavType.StringType},
+        )){
+            EspeciesEditarView(navController,
+                viewModelEspecies,
+                it.arguments!!.getInt("id"),
+                it.arguments?.getString("especie"),
+                it.arguments?.getString("informacion")
+            )
         }
     }
 }

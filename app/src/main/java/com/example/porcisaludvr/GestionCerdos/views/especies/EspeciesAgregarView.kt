@@ -1,4 +1,4 @@
-package com.example.porcisaludvr.GestionCerdos.views.medicamentos
+package com.example.porcisaludvr.GestionCerdos.views.especies
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -30,18 +30,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.porcisaludvr.GestionCerdos.models.Medicamentos
-import com.example.porcisaludvr.GestionCerdos.viewmodels.MedicamentosViewModel
+import com.example.porcisaludvr.GestionCerdos.models.Especies
+import com.example.porcisaludvr.GestionCerdos.viewmodels.EspeciesViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MedicamentosEditarView(navController: NavController, viewModel: MedicamentosViewModel,
-                           id: Int, medicamento: String?, precio: Double?, descripcion: String?){
+fun EspeciesAgregarView(navController: NavController, viewModel: EspeciesViewModel){
     Scaffold (
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text(text = "Editar Medicamentos", color= Color.White, fontWeight = FontWeight.Bold)
+                    Text(text = "Agregar Especie", color= Color.White, fontWeight = FontWeight.Bold)
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary
@@ -56,17 +55,15 @@ fun MedicamentosEditarView(navController: NavController, viewModel: Medicamentos
             )
         }
     ){
-        ContentMedicamentosEditarView(it, navController, viewModel, id, medicamento, precio, descripcion)
+        ContentEspeciesAgregarView(it, navController, viewModel)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ContentMedicamentosEditarView(it: PaddingValues, navController: NavController, viewModel: MedicamentosViewModel,
-                                  id: Int, medicamento: String?, precio: Double?, descripcion: String?){
-    var medicamento by remember { mutableStateOf(medicamento) }
-    var precio by remember { mutableStateOf(precio.toString()) }
-    var descripcion by remember { mutableStateOf(descripcion) }
+fun ContentEspeciesAgregarView(it: PaddingValues, navController: NavController, viewModel: EspeciesViewModel){
+    var especie by remember { mutableStateOf("") }
+    var informacion by remember { mutableStateOf("") }
     Column (
         modifier = Modifier
             .padding(it)
@@ -75,41 +72,31 @@ fun ContentMedicamentosEditarView(it: PaddingValues, navController: NavControlle
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         OutlinedTextField(
-            value = medicamento?: "",
-            onValueChange = {medicamento = it},
-            label = { Text(text = "Medicamento") },
+            value = especie,
+            onValueChange = {especie = it},
+            label = { Text(text = "Especie") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 30.dp)
                 .padding(bottom = 15.dp)
         )
         OutlinedTextField(
-            value = precio?: "",
-            onValueChange = {precio = it},
-            label = { Text(text = "Precio") },
+            value = informacion,
+            onValueChange = {informacion = it},
+            label = { Text(text = "Informacion") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 30.dp)
                 .padding(bottom = 15.dp),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
-        OutlinedTextField(
-            value = descripcion?: "",
-            onValueChange = {descripcion = it},
-            label = { Text(text = "Descripcion") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 30.dp)
-                .padding(bottom = 15.dp)
         )
         Button(
             onClick = {
-                val medicamento = Medicamentos ( medicamento = medicamento!!, precio = precio.toDouble()!!, descripcion = descripcion!!)
-                viewModel.actualizarMedicamento(medicamento)
+                val especie = Especies ( especie = especie, informacion = informacion)
+                viewModel.agregarEspecie(especie)
                 navController.popBackStack()
             }
         ) {
-            Text(text = "Editar")
+            Text(text = "Agregar")
         }
     }
 }
