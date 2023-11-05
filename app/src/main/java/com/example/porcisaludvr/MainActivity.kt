@@ -44,6 +44,7 @@ import com.example.porcisaludvr.BCR.TestPig
 import com.example.porcisaludvr.GestionCerdos.NavManager
 import com.example.porcisaludvr.GestionCerdos.room.GestionDatabase
 import com.example.porcisaludvr.GestionCerdos.viewmodels.CerdosViewModel
+import com.example.porcisaludvr.GestionCerdos.viewmodels.MedicamentosViewModel
 import com.example.porcisaludvr.InfoEnfermedades.NeumoniaInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.PPCInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.SarnaInfoScreen
@@ -209,7 +210,12 @@ fun GetScreenHeight(): Dp {
 @Composable
 fun inicializarBD(context: Context){
     val database= Room.databaseBuilder(context, GestionDatabase::class.java, "db_gestion").build()
+
     val daoCerdos = database.cerdosDao()
+    val daoMedicamentos = database.medicamentosDao()
+
     val cerdosViewModel = CerdosViewModel(daoCerdos)
-    NavManager(viewModel = cerdosViewModel)
+    val medicamentosViewModel = MedicamentosViewModel(daoMedicamentos)
+    NavManager(viewModelCerdos = cerdosViewModel,
+        viewModelMedicamentos = medicamentosViewModel)
 }
