@@ -10,6 +10,7 @@ import com.example.porcisaludvr.GestionCerdos.viewmodels.CerdosViewModel
 import com.example.porcisaludvr.GestionCerdos.viewmodels.DiagnosticosViewModel
 import com.example.porcisaludvr.GestionCerdos.viewmodels.EspeciesViewModel
 import com.example.porcisaludvr.GestionCerdos.viewmodels.MedicamentosViewModel
+import com.example.porcisaludvr.GestionCerdos.viewmodels.TerapiasViewModel
 import com.example.porcisaludvr.GestionCerdos.views.cerdos.CerdosAgregarView
 import com.example.porcisaludvr.GestionCerdos.views.cerdos.CerdosEditarView
 import com.example.porcisaludvr.GestionCerdos.views.cerdos.CerdosInicioView
@@ -22,12 +23,16 @@ import com.example.porcisaludvr.GestionCerdos.views.especies.EspeciesInicioView
 import com.example.porcisaludvr.GestionCerdos.views.medicamentos.MedicamentosAgregarView
 import com.example.porcisaludvr.GestionCerdos.views.medicamentos.MedicamentosEditarView
 import com.example.porcisaludvr.GestionCerdos.views.medicamentos.MedicamentosInicioView
+import com.example.porcisaludvr.GestionCerdos.views.terapias.TerapiasAgregarView
+import com.example.porcisaludvr.GestionCerdos.views.terapias.TerapiasEditarView
+import com.example.porcisaludvr.GestionCerdos.views.terapias.TerapiasInicioView
 
 @Composable
 fun NavManager(viewModelCerdos: CerdosViewModel,
                viewModelMedicamentos: MedicamentosViewModel,
                viewModelEspecies: EspeciesViewModel,
-               viewModelDiagnosticos: DiagnosticosViewModel){
+               viewModelDiagnosticos: DiagnosticosViewModel,
+               viewModelTerapias: TerapiasViewModel){
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "gestion_pig"){
@@ -118,6 +123,28 @@ fun NavManager(viewModelCerdos: CerdosViewModel,
                 it.arguments?.getString("fecha"),
                 it.arguments?.getString("sintomas"),
                 it.arguments?.getString("observaciones"),
+            )
+        }
+
+        //Terapias
+        composable("gestion_terapias"){
+            TerapiasInicioView(navController, viewModelTerapias)
+        }
+        composable("gestion_terapias_agregar"){
+            TerapiasAgregarView(navController, viewModelTerapias)
+        }
+        composable("gestion_terapias_editar/{id}/{fecha}/{observaciones}/{diagnosticoId}", arguments = listOf(
+            navArgument("id"){type= NavType.IntType},
+            navArgument("fecha"){type= NavType.IntType},
+            navArgument("observaciones"){type= NavType.IntType},
+            navArgument("diagnosticoId"){type= NavType.StringType},
+        )){
+            TerapiasEditarView(navController,
+                viewModelTerapias,
+                it.arguments!!.getInt("id"),
+                it.arguments?.getString("fecha"),
+                it.arguments?.getString("observaciones"),
+                it.arguments?.getInt("diagnosticoId"),
             )
         }
     }
