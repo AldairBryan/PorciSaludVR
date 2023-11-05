@@ -88,19 +88,20 @@ fun ContentCerdosInicioView(it: PaddingValues, navController: NavController, vie
                         Text(text = "Nombre: "+it.nombre, fontFamily = Itim)
                         Text(text = "Peso: "+it.peso.toString()+ "kg", fontFamily = Itim)
                         Text(text = "Fecha de Obtencion: "+it.fecha_obtencion, fontFamily = Itim)
-                        Text(text = "Especie: "+it.especieId.toString(), fontFamily = Itim)
                         Row ( modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.End,
-                            verticalAlignment = Alignment.Bottom){
-                            IconButton(
-                                onClick = { navController.navigate("gestion_cerdos_editar/${it.id}/${it.nombre}/${it.peso}/${it.fecha_obtencion}/${it.especieId}") }
-                            ) {
-                                Icon(imageVector = Icons.Default.Edit, contentDescription = "Editar")
-                            }
-                            IconButton(
-                                onClick = { openDialog.value=true }
-                            ) {
-                                Icon(imageVector = Icons.Default.Delete, contentDescription = "Borrar")
+                            horizontalArrangement = Arrangement.SpaceBetween){
+                            Text(text = "Especie: "+it.especieId.toString(), fontFamily = Itim)
+                            Row {
+                                IconButton(
+                                    onClick = { navController.navigate("gestion_cerdos_editar/${it.id}/${it.nombre}/${it.peso}/${it.fecha_obtencion}/${it.especieId}") }
+                                ) {
+                                    Icon(imageVector = Icons.Default.Edit, contentDescription = "Editar")
+                                }
+                                IconButton(
+                                    onClick = { openDialog.value=true }
+                                ) {
+                                    Icon(imageVector = Icons.Default.Delete, contentDescription = "Borrar")
+                                }
                             }
                         }
                         if (openDialog.value) {
