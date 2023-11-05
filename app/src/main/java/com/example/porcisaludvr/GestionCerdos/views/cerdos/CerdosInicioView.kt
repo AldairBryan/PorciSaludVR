@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -72,9 +73,13 @@ fun ContentCerdosInicioView(it: PaddingValues, navController: NavController, vie
     val state = viewModel.state
     val openDialog = remember { mutableStateOf(false)  }
     Column(
-        modifier= Modifier.padding(it)
+        modifier= Modifier
+            .fillMaxSize()
+            .padding(it)
     ){
-        LazyColumn {
+        LazyColumn(
+            modifier = Modifier.weight(1f)
+        ) {
             items(state.listaCerdos){
                 Box(
                     modifier = Modifier
@@ -134,6 +139,14 @@ fun ContentCerdosInicioView(it: PaddingValues, navController: NavController, vie
                         }
                     }
                 }
+            }
+        }
+        Row {
+            Button(onClick = { /*TODO*/ }) {
+                
+            }
+            Button(onClick = { /*TODO*/ }) {
+                
             }
         }
     }
