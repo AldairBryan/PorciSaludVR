@@ -26,6 +26,7 @@ android {
         chaquopy{
             defaultConfig{
                 pip{
+                    install("scikit-learn")
                 }
             }
         }
