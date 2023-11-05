@@ -36,18 +36,34 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import androidx.room.Room
 import com.example.porcisaludvr.BCR.TestPig
-import com.example.porcisaludvr.GestionCerdos.NavManager
 import com.example.porcisaludvr.GestionCerdos.room.GestionDatabase
 import com.example.porcisaludvr.GestionCerdos.viewmodels.CerdosViewModel
 import com.example.porcisaludvr.GestionCerdos.viewmodels.DiagnosticosViewModel
 import com.example.porcisaludvr.GestionCerdos.viewmodels.EspeciesViewModel
 import com.example.porcisaludvr.GestionCerdos.viewmodels.MedicamentosViewModel
 import com.example.porcisaludvr.GestionCerdos.viewmodels.TerapiasViewModel
+import com.example.porcisaludvr.GestionCerdos.views.cerdos.CerdosAgregarView
+import com.example.porcisaludvr.GestionCerdos.views.cerdos.CerdosEditarView
+import com.example.porcisaludvr.GestionCerdos.views.cerdos.CerdosInicioView
+import com.example.porcisaludvr.GestionCerdos.views.diagnosticos.DiagnosticosAgregarView
+import com.example.porcisaludvr.GestionCerdos.views.diagnosticos.DiagnosticosEditarView
+import com.example.porcisaludvr.GestionCerdos.views.diagnosticos.DiagnosticosInicioView
+import com.example.porcisaludvr.GestionCerdos.views.especies.EspeciesAgregarView
+import com.example.porcisaludvr.GestionCerdos.views.especies.EspeciesEditarView
+import com.example.porcisaludvr.GestionCerdos.views.especies.EspeciesInicioView
+import com.example.porcisaludvr.GestionCerdos.views.medicamentos.MedicamentosAgregarView
+import com.example.porcisaludvr.GestionCerdos.views.medicamentos.MedicamentosEditarView
+import com.example.porcisaludvr.GestionCerdos.views.medicamentos.MedicamentosInicioView
+import com.example.porcisaludvr.GestionCerdos.views.terapias.TerapiasAgregarView
+import com.example.porcisaludvr.GestionCerdos.views.terapias.TerapiasEditarView
+import com.example.porcisaludvr.GestionCerdos.views.terapias.TerapiasInicioView
 import com.example.porcisaludvr.InfoEnfermedades.NeumoniaInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.PPCInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.SarnaInfoScreen
@@ -62,6 +78,21 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PorciSaludVRTheme {
+                //Inicializacion BD
+                val database= Room.databaseBuilder(this, GestionDatabase::class.java, "db_gestion").build()
+
+                val daoCerdos = database.cerdosDao()
+                val daoMedicamentos = database.medicamentosDao()
+                val daoEspecies = database.especiesDao()
+                val daoDiagnosticos = database.diagnosticosDao()
+                val daoTerapias = database.terapiasDao()
+
+                val cerdosViewModel = CerdosViewModel(daoCerdos)
+                val medicamentosViewModel = MedicamentosViewModel(daoMedicamentos)
+                val especiesViewModel = EspeciesViewModel(daoEspecies)
+                val diagnosticosViewModel = DiagnosticosViewModel(daoDiagnosticos)
+                val terapiasViewModel = TerapiasViewModel(daoTerapias)
+
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "main_screen") {
                     composable("main_screen") {
@@ -105,130 +136,121 @@ class MainActivity : ComponentActivity() {
                     composable("info_enfermedad_neumonia"){
                         NeumoniaInfoScreen(navController)
                     }
-                }
-                inicializarBD(context = this)
-            }
-        }
-    }
-}
 
-@Composable
-fun MainScreen(navController: NavHostController) {
-    val listState = rememberLazyListState()
-    val buttonItems = listOf(
-        ButtonItem("Realidad Aumentada", R.drawable.augmented_reality_icon, "select_enfermedad_vr",Color(252,209,49,255)),
-        ButtonItem("Enfermedades", R.drawable.pig_sick_icon, "enfermedades_cerdos",Color(211,58,84,255)),
-        ButtonItem("Sobre el Cuidado", R.drawable.pig_breeding_icon, "cuidados_cerdos",Color(175,180,43,255)),
-        ButtonItem("¿Esta enfermo?", R.drawable.is_sick_icon, "test_pig",Color(156,52,194,255)),
-        ButtonItem("Gestion", R.drawable.news_icon, "gestion_pig",Color(143,201,195,255)),
-        ButtonItem("Sobre  Nosotros", R.drawable.about_us_icon, "info_screen",Color(0,200,0,255))
-    )
-    Spacer(modifier = Modifier.height(25.dp))
-    LazyColumn(
-        state = listState,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        itemsIndexed(buttonItems.chunked(2)) { rowIndex, rowItems ->
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+                    ///BD
+                    composable("gestion_pig"){
+                        CerdosInicioView(navController, cerdosViewModel)
+                    }
+                    composable("gestion_cerdos_agregar"){
+                        CerdosAgregarView(navController, cerdosViewModel)
+                    }
+                    composable("gestion_cerdos_editar/{id}/{nombre}/{peso}/{fecha_obtencion}/{especieId}", arguments = listOf(
+                        navArgument("id"){type= NavType.IntType},
+                        navArgument("nombre"){type= NavType.StringType},
+                        navArgument("peso"){type= NavType.FloatType},
+                        navArgument("fecha_obtencion"){type= NavType.StringType},
+                        navArgument("especieId"){type= NavType.IntType},
+                    )){
+                        CerdosEditarView(navController,
+                            cerdosViewModel,
+                            it.arguments!!.getInt("id"),
+                            it.arguments?.getString("nombre"),
+                            it.arguments?.getDouble("peso"),
+                            it.arguments?.getString("fecha_obtencion"),
+                            it.arguments?.getInt("especieId"),)
+                    }
 
-            ) {
+                    //Medicamentos
+                    composable("gestion_medicamentos"){
+                        MedicamentosInicioView(navController, medicamentosViewModel)
+                    }
+                    composable("gestion_medicamentos_agregar"){
+                        MedicamentosAgregarView(navController, medicamentosViewModel)
+                    }
+                    composable("gestion_medicamentos_editar/{id}/{medicamento}/{precio}/{descripcion}", arguments = listOf(
+                        navArgument("id"){type= NavType.IntType},
+                        navArgument("medicamento"){type= NavType.StringType},
+                        navArgument("precio"){type= NavType.FloatType},
+                        navArgument("descripcion"){type= NavType.StringType},
+                    )){
+                        MedicamentosEditarView(navController,
+                            medicamentosViewModel,
+                            it.arguments!!.getInt("id"),
+                            it.arguments?.getString("medicamento"),
+                            it.arguments?.getDouble("precio"),
+                            it.arguments?.getString("descripcion"),
+                        )
+                    }
 
-                for ((index, item) in rowItems.withIndex()) {
-                    Button(
-                        onClick = {
-                            // Navega a la ruta cuando se hace clic en el botón
-                            navController.navigate(item.route)
-                        },
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        modifier = Modifier
-                            .width((GetScreenWidth() / 2) - 8.dp)
-                            .height((GetScreenHeight() / 3) - 75.dp)
-                            .border(
-                                width = 5.dp, // Ancho del borde
-                                color = item.color, // Color del borde
-                                shape = RoundedCornerShape(16.dp) // Bordes redondeados
-                            )
-                            .background(Color.Transparent)
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally
+                    //Especies
+                    composable("gestion_especies"){
+                        EspeciesInicioView(navController, especiesViewModel)
+                    }
+                    composable("gestion_especies_agregar"){
+                        EspeciesAgregarView(navController, especiesViewModel)
+                    }
+                    composable("gestion_especies_editar/{id}/{especie}/{informacion}", arguments = listOf(
+                        navArgument("id"){type= NavType.IntType},
+                        navArgument("especie"){type= NavType.StringType},
+                        navArgument("informacion"){type= NavType.StringType},
+                    )){
+                        EspeciesEditarView(navController,
+                            especiesViewModel,
+                            it.arguments!!.getInt("id"),
+                            it.arguments?.getString("especie"),
+                            it.arguments?.getString("informacion")
+                        )
+                    }
 
-                        ) {
-                            Image(
-                                painter = painterResource(id = item.imageResource),
-                                contentDescription = "icon", // Puedes proporcionar una descripción adecuada aquí
-                                modifier = Modifier
-                                    .size(100.dp)
-                            )
-                            Text(text = item.label,
-                                fontFamily = Itim,
-                                fontSize = 19.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = item.color,
-                                textAlign = TextAlign.Center)
-                        }
+                    //Diagnosticos
+                    composable("gestion_diagnosticos"){
+                        DiagnosticosInicioView(navController, diagnosticosViewModel)
+                    }
+                    composable("gestion_diagnosticos_agregar"){
+                        DiagnosticosAgregarView(navController, diagnosticosViewModel)
+                    }
+                    composable("gestion_diagnosticos_editar/{id}/{cerdoId}/{estadoId}/{fecha}/{sintomas}/{observaciones}", arguments = listOf(
+                        navArgument("id"){type= NavType.IntType},
+                        navArgument("cerdoId"){type= NavType.IntType},
+                        navArgument("estadoId"){type= NavType.IntType},
+                        navArgument("fecha"){type= NavType.StringType},
+                        navArgument("sintomas"){type= NavType.StringType},
+                        navArgument("observaciones"){type= NavType.StringType},
+                    )){
+                        DiagnosticosEditarView(navController,
+                            diagnosticosViewModel,
+                            it.arguments!!.getInt("id"),
+                            it.arguments?.getInt("cerdoId"),
+                            it.arguments?.getInt("estadoId"),
+                            it.arguments?.getString("fecha"),
+                            it.arguments?.getString("sintomas"),
+                            it.arguments?.getString("observaciones"),
+                        )
+                    }
+
+                    //Terapias
+                    composable("gestion_terapias"){
+                        TerapiasInicioView(navController, terapiasViewModel)
+                    }
+                    composable("gestion_terapias_agregar"){
+                        TerapiasAgregarView(navController, terapiasViewModel)
+                    }
+                    composable("gestion_terapias_editar/{id}/{fecha}/{observaciones}/{diagnosticoId}", arguments = listOf(
+                        navArgument("id"){type= NavType.IntType},
+                        navArgument("fecha"){type= NavType.IntType},
+                        navArgument("observaciones"){type= NavType.IntType},
+                        navArgument("diagnosticoId"){type= NavType.StringType},
+                    )){
+                        TerapiasEditarView(navController,
+                            terapiasViewModel,
+                            it.arguments!!.getInt("id"),
+                            it.arguments?.getString("fecha"),
+                            it.arguments?.getString("observaciones"),
+                            it.arguments?.getInt("diagnosticoId"),
+                        )
                     }
                 }
             }
-            if (rowIndex < buttonItems.chunked(2).size - 1) {
-                Spacer(modifier = Modifier.height(25.dp)) // Ajusta la altura según tus necesidades
-            }
         }
     }
-}
-
-data class ButtonItem(val label: String, val imageResource: Int, val route: String, val color:Color)
-
-@Preview
-@Composable
-fun PreviewMain(){
-    val navController = rememberNavController()
-    MainScreen(navController)
-}
-
-@Composable
-fun GetScreenWidth(): Dp {
-    val configuration = LocalConfiguration.current
-    val screenWidth = configuration.screenWidthDp
-
-    // Si deseas obtener el ancho en píxeles, puedes usar:
-    // val screenWidthPixels = screenWidth.toPx().toInt()
-
-    return screenWidth.dp
-}
-@Composable
-fun GetScreenHeight(): Dp {
-    val configuration = LocalConfiguration.current
-    val screenHeight = configuration.screenHeightDp
-
-    // Si deseas obtener el ancho en píxeles, puedes usar:
-    // val screenWidthPixels = screenWidth.toPx().toInt()
-
-    return screenHeight.dp
-}
-
-@Composable
-fun inicializarBD(context: Context){
-    val database= Room.databaseBuilder(context, GestionDatabase::class.java, "db_gestion").build()
-
-    val daoCerdos = database.cerdosDao()
-    val daoMedicamentos = database.medicamentosDao()
-    val daoEspecies = database.especiesDao()
-    val daoDiagnosticos = database.diagnosticosDao()
-    val daoTerapias = database.terapiasDao()
-
-    val cerdosViewModel = CerdosViewModel(daoCerdos)
-    val medicamentosViewModel = MedicamentosViewModel(daoMedicamentos)
-    val especiesViewModel = EspeciesViewModel(daoEspecies)
-    val diagnosticosViewModel = DiagnosticosViewModel(daoDiagnosticos)
-    val terapiasViewModel = TerapiasViewModel(daoTerapias)
-
-    NavManager(viewModelCerdos = cerdosViewModel,
-        viewModelMedicamentos = medicamentosViewModel,
-        viewModelEspecies = especiesViewModel,
-        viewModelDiagnosticos = diagnosticosViewModel,
-        viewModelTerapias = terapiasViewModel)
 }
