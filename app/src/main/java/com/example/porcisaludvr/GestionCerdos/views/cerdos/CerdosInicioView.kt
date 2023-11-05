@@ -1,8 +1,10 @@
 package com.example.porcisaludvr.GestionCerdos.views.cerdos
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -26,6 +28,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -33,6 +36,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.porcisaludvr.GestionCerdos.viewmodels.CerdosViewModel
+import com.example.porcisaludvr.ui.theme.Itim
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,18 +45,19 @@ fun CerdosInicioView(navController: NavController, viewModel: CerdosViewModel){
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text(text = "Cerdos Gestion", color= Color.White, fontWeight = FontWeight.Bold)
+                    Text(text = "Cerdos Gestion", fontFamily = Itim
+                        ,color= Color(0,142,141,255), fontWeight = FontWeight.Bold)
             },
                 colors=TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary
+                    containerColor = Color.White
                 )
             )
         },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { navController.navigate("gestion_cerdos_agregar") },
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = Color.White
+                containerColor = Color.White,
+                contentColor = Color(0,142,141,255)
                 ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Agregar")
             }
@@ -80,19 +85,23 @@ fun ContentCerdosInicioView(it: PaddingValues, navController: NavController, vie
                         modifier= Modifier
                             .padding(12.dp)
                     ){
-                        Text(text = it.nombre)
-                        Text(text = it.peso.toString())
-                        Text(text = it.fecha_obtencion)
-                        Text(text = it.especieId.toString())
-                        IconButton(
-                            onClick = { navController.navigate("gestion_cerdos_editar/${it.id}/${it.nombre}/${it.peso}/${it.fecha_obtencion}/${it.especieId}") }
-                        ) {
-                            Icon(imageVector = Icons.Default.Edit, contentDescription = "Editar")
-                        }
-                        IconButton(
-                            onClick = { openDialog.value=true }
-                        ) {
-                            Icon(imageVector = Icons.Default.Delete, contentDescription = "Borrar")
+                        Text(text = "Nombre: "+it.nombre, fontFamily = Itim)
+                        Text(text = "Peso: "+it.peso.toString()+ "kg", fontFamily = Itim)
+                        Text(text = "Fecha de Obtencion: "+it.fecha_obtencion, fontFamily = Itim)
+                        Text(text = "Especie: "+it.especieId.toString(), fontFamily = Itim)
+                        Row ( modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.End,
+                            verticalAlignment = Alignment.Bottom){
+                            IconButton(
+                                onClick = { navController.navigate("gestion_cerdos_editar/${it.id}/${it.nombre}/${it.peso}/${it.fecha_obtencion}/${it.especieId}") }
+                            ) {
+                                Icon(imageVector = Icons.Default.Edit, contentDescription = "Editar")
+                            }
+                            IconButton(
+                                onClick = { openDialog.value=true }
+                            ) {
+                                Icon(imageVector = Icons.Default.Delete, contentDescription = "Borrar")
+                            }
                         }
                         if (openDialog.value) {
                             AlertDialog(
