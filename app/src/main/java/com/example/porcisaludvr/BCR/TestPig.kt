@@ -170,12 +170,12 @@ fun QuestionItem(question: Question, onNextClicked: (String) -> Unit) {
                     }
                 },
                 enabled = selectedAnswer.isNotBlank(),
-                colors = ButtonDefaults.buttonColors(Color.Transparent),
-                modifier = Modifier
-                    .background(
-                        color = if (selectedAnswer.isNotBlank()) Color(156,52,194,255) else Color.Transparent,
-                        shape = ButtonDefaults.shape
-                    )
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(156,52,194,255),
+                    disabledContainerColor = Color.White,
+                    contentColor = Color.White,
+                    disabledContentColor = Color(156,52,194,255)
+                )
             ) {
                 Text(text = "Siguiente", fontFamily = Itim,
                     fontSize = 19.sp)
