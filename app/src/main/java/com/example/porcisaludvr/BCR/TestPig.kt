@@ -42,7 +42,7 @@ fun TestPig (navController: NavHostController){
     var respuesta by remember {
         mutableStateOf("")
     }
-    var currentQuestionIndex by remember { mutableStateOf(22) }
+    var currentQuestionIndex by remember { mutableStateOf(0) }
     val questions = listOf(
         Question("1. ¿El cerdo presenta signos de Fiebre?", listOf("Si","No")),
         Question("2. ¿El cerdo padece de Diarrea?", listOf("Si","No")),
@@ -76,11 +76,14 @@ fun TestPig (navController: NavHostController){
     }
 
     fun procesarString(input: String): String {
+        val segments = input.split(":")
+        val resultArray = segments.filter { it.isNotEmpty() }.map { it.toInt() }
+
         val py=Python.getInstance()
         val module = py.getModule("execute")
-        val test = module["respuestas"]?.toString()
-        Log.d("RES123","$test")
-        val result = module["result"]?.toString()
+
+        val rbc=module["RBCCerdos"]
+        val result = rbc?.call(resultArray)
         return result.toString()
     }
     Column(
@@ -165,6 +168,8 @@ fun QuestionItem(question: Question, onNextClicked: (String) -> Unit) {
             Button(
                 onClick = {
                     if (selectedAnswer.isNotBlank()) {
+                        if (selectedAnswer == "Si") selectedAnswer="1"
+                        else selectedAnswer="0"
                         onNextClicked(selectedAnswer)
                         selectedAnswer = ""
                     }
