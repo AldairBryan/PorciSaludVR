@@ -43,6 +43,7 @@ fun TestPig (navController: NavHostController){
         mutableStateOf("")
     }
     var currentQuestionIndex by remember { mutableStateOf(0) }
+
     val questions = listOf(
         Question("1. ¿El cerdo presenta signos de Fiebre?", listOf("Si","No")),
         Question("2. ¿El cerdo padece de Diarrea?", listOf("Si","No")),
@@ -76,14 +77,11 @@ fun TestPig (navController: NavHostController){
     }
 
     fun procesarString(input: String): String {
-        val segments = input.split(":")
-        val resultArray = segments.filter { it.isNotEmpty() }.map { it.toInt() }
-
         val py=Python.getInstance()
         val module = py.getModule("execute")
 
         val rbc=module["RBCCerdos"]
-        val result = rbc?.call(resultArray)
+        val result = rbc?.call(input)
         return result.toString()
     }
     Column(
@@ -97,9 +95,9 @@ fun TestPig (navController: NavHostController){
             }
         } else {
             Log.d("INFO","respuestas: "+respuesta)
-            respuesta= procesarString(respuesta)
+            val resultado = procesarString(respuesta)
             Text(
-                text = "Puntuación Final: $respuesta",
+                text = "Puntuación Final: $resultado",
             )
         }
     }
