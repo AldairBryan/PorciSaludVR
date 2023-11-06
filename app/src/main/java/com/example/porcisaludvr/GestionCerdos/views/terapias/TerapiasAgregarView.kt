@@ -92,7 +92,7 @@ fun ContentTerapiasAgregarView(it: PaddingValues, navController: NavController, 
         )
         Button(
             onClick = {
-                val terapia = Terapias ( fecha = fecha, observaciones = observaciones, diagnosticoId = diagnosticoId.toInt() )
+                val terapia = Terapias ( fecha = fecha, observaciones = observaciones, diagnosticoId = 1 )
                 viewModel.agregarTerapia(terapia)
                 navController.popBackStack()
             }

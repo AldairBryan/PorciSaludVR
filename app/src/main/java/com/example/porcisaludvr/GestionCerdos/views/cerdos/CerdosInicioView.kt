@@ -3,6 +3,7 @@ package com.example.porcisaludvr.GestionCerdos.views.cerdos
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,6 +38,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
@@ -58,7 +60,8 @@ fun CerdosInicioView(navController: NavController, viewModel: CerdosViewModel){
             CenterAlignedTopAppBar(
                 title = {
                     Text(text = "Cerdos Gestion", fontFamily = Itim
-                        ,color= Color(0,142,141,255), fontWeight = FontWeight.Bold)
+                        ,color= Color(246,102,149,255), fontWeight = FontWeight.Bold,
+                        fontSize = 25.sp)
             },
                 colors=TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = Color.White
@@ -69,7 +72,7 @@ fun CerdosInicioView(navController: NavController, viewModel: CerdosViewModel){
             FloatingActionButton(
                 onClick = { navController.navigate("gestion_cerdos_agregar") },
                 containerColor = Color.White,
-                contentColor = Color(0,142,141,255)
+                contentColor = Color(246,102,149,255)
                 ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Agregar")
             }
@@ -96,6 +99,16 @@ fun ContentCerdosInicioView(it: PaddingValues, navController: NavController, vie
                     modifier = Modifier
                         .padding(8.dp)
                         .fillMaxWidth()
+                        .shadow(elevation = 4.dp, shape = RoundedCornerShape(24.dp))
+                        .border(
+                            width = 5.dp, // Ancho del borde
+                            color = Color(246,102,149,255),
+                            shape = RoundedCornerShape(24.dp) // Bordes redondeados
+                        )
+                        .background(Color.White)
+                        .clickable( onClick = {
+                            navController.navigate("gestion_diagnosticos")
+                        })
                 ){
                     Column(
                         modifier= Modifier

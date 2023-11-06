@@ -112,7 +112,7 @@ fun ContentDiagnosticosAgregarView(it: PaddingValues, navController: NavControll
         )
         Button(
             onClick = {
-                val diagnostico = Diagnosticos ( cerdoId = cerdoId.toInt(), estadoId = estadoId.toInt(), fecha = fecha, sintomas = sintomas, observaciones = observaciones)
+                val diagnostico = Diagnosticos ( cerdoId = 1, estadoId = estadoId.toInt(), fecha = fecha, sintomas = sintomas, observaciones = observaciones)
                 viewModel.agregarDiagnostico(diagnostico)
                 navController.popBackStack()
             }
