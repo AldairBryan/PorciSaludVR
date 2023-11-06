@@ -94,11 +94,8 @@ fun TestPig (navController: NavHostController){
                 onNextClicked(answer)
             }
         } else {
-            Log.d("INFO","respuestas: "+respuesta)
             val resultado = procesarString(respuesta)
-            Text(
-                text = "Puntuación Final: $resultado",
-            )
+            TestResultScreen(result = resultado, navController = navController)
         }
     }
 }
@@ -120,7 +117,7 @@ fun QuestionItem(question: Question, onNextClicked: (String) -> Unit) {
                 .shadow(elevation = 4.dp, shape = RoundedCornerShape(24.dp))
                 .border(
                     width = 5.dp, // Ancho del borde
-                    color = Color(156,52,194,255), // Color del borde
+                    color = Color(156, 52, 194, 255), // Color del borde
                     shape = RoundedCornerShape(24.dp) // Bordes redondeados
                 )
                 .background(Color.White)
