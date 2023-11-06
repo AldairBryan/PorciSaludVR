@@ -42,6 +42,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.room.Room
+import com.chaquo.python.Python
+import com.chaquo.python.android.AndroidPlatform
 import com.example.porcisaludvr.BCR.TestPig
 import com.example.porcisaludvr.GestionCerdos.room.GestionDatabase
 import com.example.porcisaludvr.GestionCerdos.viewmodels.CerdosViewModel
@@ -78,6 +80,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PorciSaludVRTheme {
+                if (! Python.isStarted()) {
+                    Python.start(AndroidPlatform(this));
+                }
                 //Inicializacion BD
                 val database= Room.databaseBuilder(this, GestionDatabase::class.java, "db_gestion").build()
 
