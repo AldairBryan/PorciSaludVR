@@ -133,34 +133,28 @@ fun ContentCerdosAgregarView(it: PaddingValues, navController: NavController, vi
                 .padding(horizontal = 30.dp)
                 .padding(bottom = 15.dp)
         )
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 30.dp)
-            .padding(bottom = 15.dp))
-        {
-                ExposedDropdownMenuBox(expanded = expanded, onExpandedChange ={ expanded = !expanded}) {
-                TextField(
-                    value = especieDesc,
-                    onValueChange = {},
-                    readOnly = true,
-                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                    modifier = Modifier.menuAnchor(),
-                    placeholder = {
-                        Text(text = "Selecciona Especie")
-                    },
-                )
-                ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded=false }) {
-                    especiesDrop.state.listaEspecies.forEach {especie->
-                        DropdownMenuItem(
-                            text = {
-                                   Text(text = especie.especie)
-                            },
-                            onClick = {
-                                expanded = false
-                                especieId = especie.id.toString()
-                                especieDesc = especie.especie
-                            })
-                    }
+        ExposedDropdownMenuBox(expanded = expanded, onExpandedChange ={ expanded = !expanded},) {
+            TextField(
+                value = especieDesc,
+                onValueChange = {},
+                readOnly = true,
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                modifier = Modifier.menuAnchor(),
+                placeholder = {
+                    Text(text = "Selecciona Especie")
+                },
+            )
+            ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded=false }) {
+                especiesDrop.state.listaEspecies.forEach {especie->
+                    DropdownMenuItem(
+                        text = {
+                            Text(text = especie.especie)
+                        },
+                        onClick = {
+                            expanded = false
+                            especieId = especie.id.toString()
+                            especieDesc = especie.especie
+                        })
                 }
             }
         }
