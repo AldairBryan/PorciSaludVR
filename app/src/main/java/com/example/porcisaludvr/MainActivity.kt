@@ -147,7 +147,7 @@ class MainActivity : ComponentActivity() {
                         CerdosInicioView(navController, cerdosViewModel)
                     }
                     composable("gestion_cerdos_agregar"){
-                        CerdosAgregarView(navController, cerdosViewModel)
+                        CerdosAgregarView(navController, cerdosViewModel, especiesViewModel)
                     }
                     composable("gestion_cerdos_editar/{id}/{nombre}/{peso}/{fecha_obtencion}/{especieId}", arguments = listOf(
                         navArgument("id"){type= NavType.IntType},

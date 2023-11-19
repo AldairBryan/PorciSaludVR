@@ -32,10 +32,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.porcisaludvr.GestionCerdos.models.Cerdos
 import com.example.porcisaludvr.GestionCerdos.viewmodels.CerdosViewModel
+import com.example.porcisaludvr.GestionCerdos.viewmodels.EspeciesViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CerdosAgregarView(navController: NavController, viewModel: CerdosViewModel){
+fun CerdosAgregarView(navController: NavController, viewModel: CerdosViewModel, especiesDrop: EspeciesViewModel){
     Scaffold (
         topBar = {
             CenterAlignedTopAppBar(
@@ -55,13 +56,13 @@ fun CerdosAgregarView(navController: NavController, viewModel: CerdosViewModel){
             )
         }
     ){
-        ContentCerdosAgregarView(it, navController, viewModel)
+        ContentCerdosAgregarView(it, navController, viewModel, especiesDrop)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ContentCerdosAgregarView(it: PaddingValues, navController: NavController, viewModel: CerdosViewModel){
+fun ContentCerdosAgregarView(it: PaddingValues, navController: NavController, viewModel: CerdosViewModel, especiesDrop: EspeciesViewModel){
     var nombre by remember { mutableStateOf("") }
     var peso by remember { mutableStateOf("") }
     var fecha_obtencion by remember { mutableStateOf("") }
