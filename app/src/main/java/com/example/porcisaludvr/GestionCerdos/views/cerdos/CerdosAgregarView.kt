@@ -65,9 +65,9 @@ fun CerdosAgregarView(navController: NavController, viewModel: CerdosViewModel, 
                 ),
                 navigationIcon = {
                     IconButton(
-                        onClick = { navController.popBackStack() }
+                        onClick = { navController.popBackStack() },
                     ) {
-                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Regresar")
+                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Regresar", tint = Color(246,102,149,255))
                     }
                 }
             )
