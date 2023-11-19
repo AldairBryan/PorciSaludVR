@@ -140,23 +140,39 @@ fun ContentCerdosAgregarView(it: PaddingValues, navController: NavController, vi
                 .padding(bottom = 15.dp)
         )
         ExposedDropdownMenuBox(expanded = expanded, onExpandedChange ={ expanded = !expanded},
-            modifier = Modifier.padding(bottom = 15.dp)) {
+            modifier = Modifier.padding(bottom = 15.dp),
+            ) {
             TextField(
                 value = especieDesc,
                 onValueChange = {},
                 readOnly = true,
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 modifier = Modifier.menuAnchor(),
+                colors = TextFieldDefaults.textFieldColors( containerColor =  Color.White,
+                    focusedTrailingIconColor = Color(246,102,149,255),
+                    unfocusedTrailingIconColor = Color(246,102,149,255),
+                    unfocusedIndicatorColor = Color(246,102,149,255),
+                    focusedIndicatorColor = Color(246,102,149,255)),
                 placeholder = {
-                    Text(text = "Selecciona Especie")
+                    Text(text = "Selecciona Especie", fontFamily = Itim, // Cambia la fuente
+                        color =  Color(246,102,149,255))
                 },
-            )
-            ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded=false }) {
+                textStyle = TextStyle(
+                    fontFamily = Itim, // Cambia la fuente
+                    color =  Color(246,102,149,255) // Cambia el color del texto
+                ),
+                )
+            ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded=false },
+                modifier = Modifier.background(color = Color.White)) {
                 especiesDrop.state.listaEspecies.forEach {especie->
                     DropdownMenuItem(
                         text = {
-                            Text(text = especie.especie)
+                            Text(text = especie.especie, fontFamily = Itim, // Cambia la fuente
+                                color =  Color(246,102,149,255))
                         },
+                        modifier = Modifier.background(
+                            color = Color.White
+                        ),
                         onClick = {
                             expanded = false
                             especieId = especie.id.toString()
@@ -176,7 +192,7 @@ fun ContentCerdosAgregarView(it: PaddingValues, navController: NavController, vi
                 .shadow(elevation = 4.dp, shape = RoundedCornerShape(24.dp))
                 .border(
                     width = 2.dp, // Ancho del borde
-                    color =  Color(246,102,149,255), // Color del borde
+                    color = Color(246, 102, 149, 255), // Color del borde
                     shape = RoundedCornerShape(24.dp) // Bordes redondeados
                 )
                 .background(Color.Transparent)
