@@ -1,5 +1,6 @@
 package com.example.porcisaludvr.GestionCerdos.views.cerdos
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,13 +11,17 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -67,6 +72,8 @@ fun ContentCerdosAgregarView(it: PaddingValues, navController: NavController, vi
     var peso by remember { mutableStateOf("") }
     var fecha_obtencion by remember { mutableStateOf("") }
     var especieId by remember { mutableStateOf("") }
+    var expanded by remember { mutableStateOf(false) }
+    var especieDesc by remember { mutableStateOf("")}
     Column (
         modifier = Modifier
             .padding(it)
@@ -102,16 +109,34 @@ fun ContentCerdosAgregarView(it: PaddingValues, navController: NavController, vi
                 .padding(horizontal = 30.dp)
                 .padding(bottom = 15.dp)
         )
-        OutlinedTextField(
-            value = especieId,
-            onValueChange = {especieId = it},
-            label = { Text(text = "Especie")},
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 30.dp)
-                .padding(bottom = 15.dp),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 30.dp)
+            .padding(bottom = 15.dp))
+        {
+            ExposedDropdownMenuBox(expanded = expanded, onExpandedChange ={ expanded = !expanded}) {
+                TextField(
+                    value = especieDesc,
+                    onValueChange = {},
+                    readOnly = true,
+                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                    modifier = Modifier.menuAnchor()
+                )
+                ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded=false }) {
+                    especiesDrop.state.listaEspecies.forEach {especie->
+                        DropdownMenuItem(
+                            text = {
+                                   Text(text = especie.especie)
+                            },
+                            onClick = {
+                                expanded = false
+                                especieId = especie.id.toString()
+                                especieDesc = especie.especie
+                            })
+                    }
+                }
+            }
+        }
         Button(
             onClick = {
                 val cerdo = Cerdos ( nombre = nombre, peso = peso.toDouble(), fecha_obtencion = fecha_obtencion, especieId = especieId.toInt() )
