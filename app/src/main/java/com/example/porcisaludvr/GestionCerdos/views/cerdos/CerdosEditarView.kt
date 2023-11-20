@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -93,7 +94,13 @@ fun ContentCerdosEditarView(it: PaddingValues, navController: NavController, vie
         OutlinedTextField(
             value = nombre ?: "",
             onValueChange = {nombre = it},
-            label = { Text(text = "Nombre") },
+            label = { Text(text = "Nombre", fontFamily = Itim, color = Color(246, 102, 149, 255)) },
+            shape = RoundedCornerShape(24.dp),
+            textStyle = TextStyle(fontFamily = Itim),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(246, 102, 149, 255),
+                unfocusedBorderColor = Color(246, 102, 149, 255),
+            ),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 30.dp)
@@ -102,7 +109,13 @@ fun ContentCerdosEditarView(it: PaddingValues, navController: NavController, vie
         OutlinedTextField(
             value = peso ?: "",
             onValueChange = {peso = it},
-            label = { Text(text = "Peso") },
+            label = { Text(text = "Peso", fontFamily = Itim, color = Color(246, 102, 149, 255)) },
+            shape = RoundedCornerShape(24.dp),
+            textStyle = TextStyle(fontFamily = Itim),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(246, 102, 149, 255),
+                unfocusedBorderColor = Color(246, 102, 149, 255),
+            ),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 30.dp)
@@ -112,7 +125,13 @@ fun ContentCerdosEditarView(it: PaddingValues, navController: NavController, vie
         OutlinedTextField(
             value = fecha_obtencion ?: "",
             onValueChange = {fecha_obtencion = it},
-            label = { Text(text = "Fecha de Obtencion") },
+            label = { Text(text = "Fecha de Obtencion", fontFamily = Itim, color = Color(246, 102, 149, 255)) },
+            shape = RoundedCornerShape(24.dp),
+            textStyle = TextStyle(fontFamily = Itim),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(246, 102, 149, 255),
+                unfocusedBorderColor = Color(246, 102, 149, 255),
+            ),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 30.dp)
