@@ -47,7 +47,7 @@ import com.example.porcisaludvr.ui.theme.Itim
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CerdosEditarView(navController: NavController, viewModel: CerdosViewModel, especiesDrop: EspeciesViewModel,
-                     id: Int, nombre: String?, peso: Double?, fecha_obtencion: String?, especieId: Int?){
+                     id: Int, nombre: String?, peso: Double?, fecha_obtencion: String?, especieId: Int?, especieInfo: String?){
     Scaffold (
         topBar = {
             CenterAlignedTopAppBar(
@@ -69,21 +69,21 @@ fun CerdosEditarView(navController: NavController, viewModel: CerdosViewModel, e
             )
         }
     ){
-        ContentCerdosEditarView(it, navController, viewModel,especiesDrop, id, nombre, peso, fecha_obtencion, especieId)
+        ContentCerdosEditarView(it, navController, viewModel,especiesDrop, id, nombre, peso, fecha_obtencion, especieId, especieInfo)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ContentCerdosEditarView(it: PaddingValues, navController: NavController, viewModel: CerdosViewModel, especiesDrop: EspeciesViewModel,
-                            id: Int, nombre: String?, peso: Double?, fecha_obtencion: String?, especieId: Int?){
+                            id: Int, nombre: String?, peso: Double?, fecha_obtencion: String?, especieId: Int?, especieInfo: String?){
     var nombre by remember { mutableStateOf(nombre) }
     var peso by remember { mutableStateOf(peso.toString()) }
     var fecha_obtencion by remember { mutableStateOf(fecha_obtencion) }
     var especieIdChange by remember { mutableStateOf(especieId.toString()) }
 
     var expanded by remember { mutableStateOf(false) }
-    var especieDesc by remember { mutableStateOf(especieId.toString())}
+    var especieDesc by remember { mutableStateOf(especieInfo)}
     Column (
         modifier = Modifier
             .padding(it)
@@ -141,7 +141,7 @@ fun ContentCerdosEditarView(it: PaddingValues, navController: NavController, vie
             modifier = Modifier.padding(bottom = 15.dp),
         ) {
             TextField(
-                value = especieDesc,
+                value = especieDesc?:"",
                 onValueChange = {},
                 readOnly = true,
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },

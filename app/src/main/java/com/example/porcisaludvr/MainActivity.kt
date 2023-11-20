@@ -149,12 +149,13 @@ class MainActivity : ComponentActivity() {
                     composable("gestion_cerdos_agregar"){
                         CerdosAgregarView(navController, cerdosViewModel, especiesViewModel)
                     }
-                    composable("gestion_cerdos_editar/{id}/{nombre}/{peso}/{fecha_obtencion}/{especieId}", arguments = listOf(
+                    composable("gestion_cerdos_editar/{id}/{nombre}/{peso}/{fecha_obtencion}/{especieId}/{especieInfo}", arguments = listOf(
                         navArgument("id"){type= NavType.IntType},
                         navArgument("nombre"){type= NavType.StringType},
                         navArgument("peso"){type= NavType.FloatType},
                         navArgument("fecha_obtencion"){type= NavType.StringType},
                         navArgument("especieId"){type= NavType.IntType},
+                        navArgument("especieInfo"){type= NavType.StringType},
                     )){
                         CerdosEditarView(navController,
                             cerdosViewModel,
@@ -163,7 +164,8 @@ class MainActivity : ComponentActivity() {
                             it.arguments?.getString("nombre"),
                             it.arguments?.getDouble("peso"),
                             it.arguments?.getString("fecha_obtencion"),
-                            it.arguments?.getInt("especieId"),)
+                            it.arguments?.getInt("especieId"),
+                            it.arguments?.getString("especieInfo"),)
                     }
 
                     //Medicamentos

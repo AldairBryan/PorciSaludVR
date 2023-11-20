@@ -1,7 +1,7 @@
 package com.example.porcisaludvr.GestionCerdos.states
 
-import com.example.porcisaludvr.GestionCerdos.models.Cerdos
+import com.example.porcisaludvr.GestionCerdos.models.CerdoConEspecie
 
 data class CerdosState(
-    val listaCerdos: List<Cerdos> = emptyList()
+    val listaCerdos: List<CerdoConEspecie> = emptyList()
 )

@@ -114,15 +114,16 @@ fun ContentCerdosInicioView(it: PaddingValues, navController: NavController, vie
                         modifier= Modifier
                             .padding(12.dp)
                     ){
-                        Text(text = "Nombre: "+it.nombre, fontFamily = Itim)
-                        Text(text = "Peso: "+it.peso.toString()+ "kg", fontFamily = Itim)
-                        Text(text = "Fecha de Obtencion: "+it.fecha_obtencion, fontFamily = Itim)
+                        Text(text = "Nombre: "+it.cerdo.nombre, fontFamily = Itim)
+                        Text(text = "Peso: "+it.cerdo.peso.toString()+ "kg", fontFamily = Itim)
+                        Text(text = "Fecha de Obtencion: "+it.cerdo.fecha_obtencion, fontFamily = Itim)
                         Row ( modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween){
-                            Text(text = "Especie: "+it.especieId.toString(), fontFamily = Itim)
+                            Text(text = "Especie: "+it.especie.especie, fontFamily = Itim)
                             Row {
                                 IconButton(
-                                    onClick = { navController.navigate("gestion_cerdos_editar/${it.id}/${it.nombre}/${it.peso}/${it.fecha_obtencion}/${it.especieId}") }
+                                    onClick = { navController.navigate("gestion_cerdos_editar/${it.cerdo.id}/${it.cerdo.nombre}/${it.cerdo.peso}" +
+                                            "/${it.cerdo.fecha_obtencion}/${it.cerdo.especieId}/${it.especie.especie}") }
                                 ) {
                                     Icon(imageVector = Icons.Default.Edit, contentDescription = "Editar")
                                 }
@@ -143,7 +144,7 @@ fun ContentCerdosInicioView(it: PaddingValues, navController: NavController, vie
                                 confirmButton = {
                                     Button(
                                         onClick = {
-                                            viewModel.borrarCerdo(it)
+                                            viewModel.borrarCerdo(it.cerdo)
                                             openDialog.value = false
                                         }
                                     ) {
