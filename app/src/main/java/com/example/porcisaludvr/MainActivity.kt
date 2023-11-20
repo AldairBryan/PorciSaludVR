@@ -158,6 +158,7 @@ class MainActivity : ComponentActivity() {
                     )){
                         CerdosEditarView(navController,
                             cerdosViewModel,
+                            especiesViewModel,
                             it.arguments!!.getInt("id"),
                             it.arguments?.getString("nombre"),
                             it.arguments?.getDouble("peso"),
