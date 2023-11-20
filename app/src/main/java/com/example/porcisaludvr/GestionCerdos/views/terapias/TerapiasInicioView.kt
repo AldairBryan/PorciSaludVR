@@ -71,7 +71,6 @@ fun TerapiasInicioView(navController: NavController, viewModel: TerapiasViewMode
 @Composable
 fun ContentTerapiasInicioView(it: PaddingValues, navController: NavController, viewModel: TerapiasViewModel){
     val state = viewModel.state
-    val openDialog = remember { mutableStateOf(false)  }
     Column(
         modifier= Modifier.padding(it)
     ){
@@ -89,6 +88,7 @@ fun ContentTerapiasInicioView(it: PaddingValues, navController: NavController, v
                         )
                         .background(Color.White)
                 ){
+                    var openDialog = remember { mutableStateOf(false)  }
                     Column(
                         modifier= Modifier
                             .padding(12.dp)

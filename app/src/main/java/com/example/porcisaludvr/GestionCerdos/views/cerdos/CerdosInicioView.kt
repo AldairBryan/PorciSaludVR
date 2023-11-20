@@ -85,7 +85,6 @@ fun CerdosInicioView(navController: NavController, viewModel: CerdosViewModel){
 @Composable
 fun ContentCerdosInicioView(it: PaddingValues, navController: NavController, viewModel: CerdosViewModel){
     val state = viewModel.state
-    val openDialog = remember { mutableStateOf(false)  }
     Column(
         modifier= Modifier
             .fillMaxSize()
@@ -110,6 +109,7 @@ fun ContentCerdosInicioView(it: PaddingValues, navController: NavController, vie
                             navController.navigate("gestion_diagnosticos")
                         })
                 ){
+                    var openDialog = remember { mutableStateOf(false)  }
                     Column(
                         modifier= Modifier
                             .padding(12.dp)

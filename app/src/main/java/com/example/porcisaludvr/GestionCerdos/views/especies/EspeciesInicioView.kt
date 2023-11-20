@@ -71,7 +71,6 @@ fun EspeciesInicioView(navController: NavController, viewModel: EspeciesViewMode
 @Composable
 fun ContentEspeciesInicioView(it: PaddingValues, navController: NavController, viewModel: EspeciesViewModel){
     val state = viewModel.state
-    val openDialog = remember { mutableStateOf(false)  }
     Column(
         modifier= Modifier.padding(it)
     ){
@@ -89,6 +88,7 @@ fun ContentEspeciesInicioView(it: PaddingValues, navController: NavController, v
                         )
                         .background(Color.White)
                 ){
+                    var openDialog = remember { mutableStateOf(false)  }
                     Column(
                         modifier= Modifier
                             .padding(12.dp)

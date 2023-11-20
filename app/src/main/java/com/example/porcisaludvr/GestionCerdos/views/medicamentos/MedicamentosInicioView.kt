@@ -71,7 +71,6 @@ fun MedicamentosInicioView(navController: NavController, viewModel: Medicamentos
 @Composable
 fun ContentMedicamentosInicioView(it: PaddingValues, navController: NavController, viewModel: MedicamentosViewModel){
     val state = viewModel.state
-    val openDialog = remember { mutableStateOf(false)  }
     Column(
         modifier= Modifier.padding(it)
     ){
@@ -89,6 +88,7 @@ fun ContentMedicamentosInicioView(it: PaddingValues, navController: NavControlle
                         )
                         .background(Color.White)
                 ){
+                    var openDialog = remember { mutableStateOf(false)  }
                     Column(
                         modifier= Modifier
                             .padding(12.dp)

@@ -72,7 +72,6 @@ fun DiagnosticosInicioView(navController: NavController, viewModel: Diagnosticos
 @Composable
 fun ContentDiagnosticosInicioView(it: PaddingValues, navController: NavController, viewModel: DiagnosticosViewModel){
     val state = viewModel.state
-    val openDialog = remember { mutableStateOf(false)  }
     Column(
         modifier= Modifier.padding(it)
     ){
@@ -93,6 +92,7 @@ fun ContentDiagnosticosInicioView(it: PaddingValues, navController: NavControlle
                             navController.navigate("gestion_terapias")
                         })
                 ){
+                    var openDialog = remember { mutableStateOf(false)  }
                     Column(
                         modifier= Modifier
                             .padding(12.dp)
