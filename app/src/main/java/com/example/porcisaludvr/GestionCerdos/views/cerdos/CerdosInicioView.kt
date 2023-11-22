@@ -89,6 +89,7 @@ fun ContentCerdosInicioView(it: PaddingValues, navController: NavController, vie
         modifier= Modifier
             .fillMaxSize()
             .padding(it)
+            .background(Color.White)
     ){
         LazyColumn(
             modifier = Modifier.weight(1f)

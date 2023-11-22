@@ -1,5 +1,6 @@
 package com.example.porcisaludvr.GestionCerdos.views.especies
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -68,7 +69,8 @@ fun ContentEspeciesAgregarView(it: PaddingValues, navController: NavController, 
         modifier = Modifier
             .padding(it)
             .padding(top = 30.dp)
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         OutlinedTextField(

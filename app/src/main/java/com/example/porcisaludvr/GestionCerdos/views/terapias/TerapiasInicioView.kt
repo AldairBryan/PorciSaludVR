@@ -73,6 +73,7 @@ fun ContentTerapiasInicioView(it: PaddingValues, navController: NavController, v
     val state = viewModel.state
     Column(
         modifier= Modifier.padding(it)
+            .background(Color.White)
     ){
         LazyColumn {
             items(state.listaTerapias){

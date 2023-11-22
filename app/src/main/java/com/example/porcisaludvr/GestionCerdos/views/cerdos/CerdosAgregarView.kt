@@ -61,8 +61,7 @@ fun CerdosAgregarView(navController: NavController, viewModel: CerdosViewModel, 
                         fontSize = 25.sp)
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = Color.White
-                ),
+                    containerColor = Color.White),
                 navigationIcon = {
                     IconButton(
                         onClick = { navController.popBackStack() },
@@ -90,7 +89,8 @@ fun ContentCerdosAgregarView(it: PaddingValues, navController: NavController, vi
         modifier = Modifier
             .padding(it)
             .padding(top = 30.dp)
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         OutlinedTextField(

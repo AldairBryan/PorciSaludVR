@@ -1,5 +1,6 @@
 package com.example.porcisaludvr.GestionCerdos.views.diagnosticos
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -71,7 +72,8 @@ fun ContentDiagnosticosEditarView(it: PaddingValues, navController: NavControlle
         modifier = Modifier
             .padding(it)
             .padding(top = 30.dp)
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         OutlinedTextField(

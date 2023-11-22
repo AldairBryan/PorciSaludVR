@@ -88,7 +88,8 @@ fun ContentCerdosEditarView(it: PaddingValues, navController: NavController, vie
         modifier = Modifier
             .padding(it)
             .padding(top = 30.dp)
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         OutlinedTextField(
