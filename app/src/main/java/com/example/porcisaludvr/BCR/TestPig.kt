@@ -69,7 +69,8 @@ fun TestPig (navController: NavHostController){
         Question("22. ¿El cerdo ha tenido convulsiones?", listOf("Si","No")),
         Question("23. ¿El cerdo muestra ataxia, es decir, falta de coordinación y trastornos nerviosos?", listOf("Si","No")),
         Question("24. ¿El cerdo tose de manera anormal?", listOf("Si","No")),
-    )
+        Question("25. ¿El cerdo presenta síntomas de neumonía aguda, como dificultad respiratoria, tos persistente y posiblemente secreción nasal, lo que podría indicar una infección pulmonar aguda?", listOf("Si","No")),
+        )
 
     fun onNextClicked(selectedAnswer: String) {
         respuesta += selectedAnswer+":"
