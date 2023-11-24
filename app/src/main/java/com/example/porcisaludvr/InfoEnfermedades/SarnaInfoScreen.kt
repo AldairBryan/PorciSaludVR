@@ -53,7 +53,7 @@ fun SarnaInfoScreen(navController: NavHostController){
         )
         // Imagen
         Image(
-            painter = painterResource(id = R.drawable.ppc_info),
+            painter = painterResource(id = R.drawable.m2_info_2_sarna),
             contentDescription = null,
             modifier = Modifier
                 .size(200.dp)
@@ -96,6 +96,14 @@ fun SarnaInfoScreen(navController: NavHostController){
                     " - Su presencia afecta a la eficiencia de conversión del pienso y ganancia diaria, sobretodo si la carga infectiva es grande.",
             colorTitle = colorInfo)
         Spacer(modifier = Modifier.height(6.dp))
+
+        Image(
+            painter = painterResource(id = R.drawable.m2_info_2_sarna_localizaciones),
+            contentDescription = null,
+            modifier = Modifier
+                .size(200.dp)
+                .background(Color.Transparent)
+        )
 
         //Causas / Factores
         ExpandableCard(title = "Causas / Factores",

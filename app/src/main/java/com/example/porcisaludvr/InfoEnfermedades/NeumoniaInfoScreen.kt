@@ -53,7 +53,7 @@ fun NeumoniaInfoScreen(navController: NavHostController) {
         )
         // Imagen
         Image(
-            painter = painterResource(id = R.drawable.ppc_info),
+            painter = painterResource(id = R.drawable.m2_info_3_neumonia_enzootica),
             contentDescription = null,
             modifier = Modifier
                 .size(200.dp)

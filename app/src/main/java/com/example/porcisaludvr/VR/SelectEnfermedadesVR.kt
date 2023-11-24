@@ -31,8 +31,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.porcisaludvr.ButtonItem
-import com.example.porcisaludvr.MainScreen
 import com.example.porcisaludvr.R
 import com.example.porcisaludvr.ui.theme.Itim
 
@@ -41,15 +39,15 @@ fun SelectEnfermedadesVR(navController: NavHostController) {
     val listState = rememberLazyListState()
     val buttonItems = listOf(
         com.example.porcisaludvr.InfoEnfermedades.ButtonItem(
-            "Peste Porcina", R.drawable.sel_vr_ppc, "VR-ppc",
+            "Peste Porcina", R.drawable.m1_vr_1_ppc, "VR-ppc",
             Color(0, 142, 141, 255)
         ),
         com.example.porcisaludvr.InfoEnfermedades.ButtonItem(
-            "Sarna Sarcoptica", R.drawable.sel_vr_sarna, "VR-sarna",
+            "Sarna Sarcoptica", R.drawable.m1_vr_2_sarna, "VR-sarna",
             Color(137, 73, 136, 255)
         ),
         com.example.porcisaludvr.InfoEnfermedades.ButtonItem(
-            "Neumonía Enzoótica", R.drawable.sel_vr_neumonia, "VR-neumonia",
+            "Neumonía Enzoótica", R.drawable.m1_vr_3_neumonia, "VR-neumonia",
             Color(211, 58, 84, 255)
         ),
     )

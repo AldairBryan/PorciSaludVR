@@ -37,28 +37,28 @@ fun TestResultScreen(result: String, navController: NavController) {
                 Color(0,142,141,255),"info_enfermedad_ppc",
                 "Enfermedad viral altamente contagiosa que afecta a los cerdos. Causada por el virus de la " +
                         "peste porcina africana (PPA), esta enfermedad provoca fiebre alta, debilidad, y en muchos casos, " +
-                        "la muerte de los cerdos infectados.", R.drawable.ppc_info)
+                        "la muerte de los cerdos infectados.", R.drawable.m2_info_1_ppc)
         }
         "['SARCOPTIC MANGE']" -> {
             resultEnfermedad = Result("Sarna Sarcoptica",
                 Color(137,73,136,255),"info_enfermedad_sarna",
                 "Enfermedad de la piel causada por el ácaro Sarcoptes scabiei. Esta enfermedad afecta a los " +
                         "cerdos y provoca intensa picazón, pérdida de pelo, costras y lesiones cutáneas. La sarna " +
-                        "sarcoptica puede transmitirse entre cerdos.",R.drawable.sarna_info)
+                        "sarcoptica puede transmitirse entre cerdos.",R.drawable.m2_info_2_sarna)
         }
         "['Enzootica']" -> {
             resultEnfermedad = Result("Neumonía Enzoótica",
                 Color(211,58,84,255),"info_enfermedad_neumonia",
                 "Enfermedad respiratoria crónica que afecta a los cerdos. Es causada principalmente por el bacterium " +
                         "Mycoplasma hyopneumoniae, pero puede agravarse por infecciones virales secundarias. Los síntomas " +
-                        "incluyen tos, dificultad para respirar y bajo rendimiento de crecimiento.",R.drawable.ppc_info)
+                        "incluyen tos, dificultad para respirar y bajo rendimiento de crecimiento.",R.drawable.m2_info_1_ppc)
         }
         "['Swine Erisipelas']" -> {
             resultEnfermedad = Result("Swine Erisipelas",
                 Color(211,58,84,255),"info_enfermedad_neumonia",
                 "Enfermedad respiratoria crónica que afecta a los cerdos. Es causada principalmente por el bacterium " +
                         "Mycoplasma hyopneumoniae, pero puede agravarse por infecciones virales secundarias. Los síntomas " +
-                        "incluyen tos, dificultad para respirar y bajo rendimiento de crecimiento.",R.drawable.ppc_info)
+                        "incluyen tos, dificultad para respirar y bajo rendimiento de crecimiento.",R.drawable.m2_info_1_ppc)
         }
     }
     Column(

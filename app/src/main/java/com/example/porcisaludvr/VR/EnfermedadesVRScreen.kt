@@ -8,12 +8,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -35,9 +33,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -80,9 +76,9 @@ fun EnfermedadesVRScreen(navController: NavHostController, enfermedad: String) {
 fun Enfermedades(startIndex: Int, modifier: Modifier, onClick:(String)->Unit) {
 
     val itemsList = listOf(
-        Enfermedad("ppc", R.drawable.sel_vr_ppc),
-        Enfermedad("sarna", R.drawable.sel_vr_sarna),
-        Enfermedad("neumonia", R.drawable.sel_vr_neumonia),
+        Enfermedad("ppc", R.drawable.m1_vr_1_ppc),
+        Enfermedad("sarna", R.drawable.m1_vr_2_sarna),
+        Enfermedad("neumonia", R.drawable.m1_vr_3_neumonia),
         )
     var currentIndex by remember {
         mutableStateOf(startIndex)

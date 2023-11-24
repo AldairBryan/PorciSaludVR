@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -57,7 +56,7 @@ fun PPCInfoScreen(navController: NavHostController) {
         )
         // Imagen
         Image(
-            painter = painterResource(id = R.drawable.ppc_info),
+            painter = painterResource(id = R.drawable.m2_info_1_ppc),
             contentDescription = null,
             modifier = Modifier
                 .size(200.dp)
