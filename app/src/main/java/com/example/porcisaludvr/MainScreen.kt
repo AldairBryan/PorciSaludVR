@@ -39,18 +39,18 @@ import com.example.porcisaludvr.ui.theme.Itim
 fun MainScreen(navController: NavHostController) {
     val listState = rememberLazyListState()
     val buttonItems = listOf(
-        ButtonItem("Realidad Aumentada", R.drawable.augmented_reality_icon, "select_enfermedad_vr",
+        ButtonItem("Realidad Aumentada", R.drawable.m1_menu_1_realidad_aumentada, "select_enfermedad_vr",
             Color(252,209,49,255)
         ),
-        ButtonItem("Enfermedades", R.drawable.pig_sick_icon, "enfermedades_cerdos",
+        ButtonItem("Enfermedades", R.drawable.m1_menu_2_enfermedades, "enfermedades_cerdos",
             Color(211,58,84,255)
         ),
-        ButtonItem("Sobre el Cuidado", R.drawable.pig_breeding_icon, "cuidados_cerdos",
+        ButtonItem("Sobre el Cuidado", R.drawable.m1_menu_3_cuidado, "cuidados_cerdos",
             Color(175,180,43,255)
         ),
-        ButtonItem("¿Esta enfermo?", R.drawable.is_sick_icon, "test_pig", Color(156,52,194,255)),
-        ButtonItem("Busqueda", R.drawable.news_icon, "busqueda", Color(143,201,195,255)),
-        ButtonItem("Sobre  Nosotros", R.drawable.about_us_icon, "info_screen", Color(0,200,0,255))
+        ButtonItem("¿Esta enfermo?", R.drawable.m1_menu_4_rbc, "test_pig", Color(156,52,194,255)),
+        ButtonItem("Busqueda", R.drawable.m1_menu_5_busqueda, "busqueda", Color(143,201,195,255)),
+        ButtonItem("Sobre  Nosotros", R.drawable.m1_menu_6_nosotros, "info_screen", Color(0,200,0,255))
     )
     Spacer(modifier = Modifier.height(25.dp))
     LazyColumn(
