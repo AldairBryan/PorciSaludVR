@@ -2,6 +2,7 @@ package com.example.porcisaludvr.Busqueda
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -25,6 +27,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -34,7 +37,7 @@ import androidx.navigation.NavHostController
 @Composable
 fun BuscarScreen(navController: NavHostController) {
     var searchQuery by remember { mutableStateOf("") }
-    var selectedTags by remember { mutableStateOf(setOf<String>()) }
+    var allSelectedTags by remember { mutableStateOf(setOf<String>()) }
 
     val modules = listOf(
         Module("Module 1", setOf("tag1", "tagA")),
@@ -47,67 +50,99 @@ fun BuscarScreen(navController: NavHostController) {
                 module.tags.any { it.contains(searchQuery, ignoreCase = true) }
     }
 
-    val filteredTags = modules.flatMap { it.tags }.distinct().filter {
-        it.contains(searchQuery, ignoreCase = true) || searchQuery.isBlank()
-    }
+    // Filtrar tags para que no aparezcan en "Tags de Búsqueda" si ya están seleccionados
+    val filteredTags = modules.flatMap { it.tags }
+        .distinct()
+        .filter { it.contains(searchQuery, ignoreCase = true) || searchQuery.isBlank() }
+        .filterNot { it in allSelectedTags }
 
-    Surface(
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .padding(16.dp)
     ) {
-        Column(
+        // Barra de búsqueda
+        OutlinedTextField(
+            value = searchQuery,
+            onValueChange = {
+                searchQuery = it
+                // No hay cambio en los tags seleccionados al cambiar la búsqueda
+            },
+            label = { Text("Search") },
+            leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = null) },
             modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            // Search bar
-            OutlinedTextField(
-                value = searchQuery,
-                onValueChange = {
-                    searchQuery = it
-                    // Clear selected tags when the search query changes
-                    selectedTags = setOf()
-                },
-                label = { Text("Search") },
-                leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = null) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 8.dp)
+                .fillMaxWidth()
+                .padding(bottom = 8.dp)
+        )
+
+        // Texto para indicar los Tags Seleccionados
+        if (allSelectedTags.isNotEmpty()) {
+            Text("Tags Seleccionados:")
+            // Barra de tags seleccionados
+            SelectedTagsBar(
+                selectedTags = allSelectedTags,
+                onTagRemove = { tag ->
+                    allSelectedTags -= tag
+                }
             )
+        }
 
-            // Display tags only when there is a search query
-            if (searchQuery.isNotBlank() || selectedTags.isNotEmpty()) {
-                TagBar(
-                    tags = filteredTags,
-                    selectedTags = selectedTags,
-                    onTagClick = { tag ->
-                        // Toggle tag selection
-                        selectedTags = if (tag in selectedTags) {
-                            selectedTags - tag
-                        } else {
-                            selectedTags + tag
-                        }
+        // Texto para indicar los Tags de Búsqueda
+        if (filteredTags.isNotEmpty()) {
+            Text("Tags de Búsqueda:")
+            // Barra de tags de búsqueda
+            TagBar(
+                tags = filteredTags,
+                selectedTags = allSelectedTags,
+                onTagClick = { tag ->
+                    // Alternar la selección de tag
+                    allSelectedTags = if (tag in allSelectedTags) {
+                        allSelectedTags - tag
+                    } else {
+                        allSelectedTags + tag
                     }
-                )
-            }
+                    // Limpiar la búsqueda al agregar un tag
+                    searchQuery = ""
+                }
+            )
+        }
 
-            // Display modules
-            ModuleList(modules = filteredModules, selectedTags = selectedTags)
+        // Mostrar módulos
+        ModuleList(modules = filteredModules, selectedTags = allSelectedTags)
+    }
+}
+
+
+@Composable
+fun SelectedTagsBar(
+    selectedTags: Set<String>,
+    onTagRemove: (String) -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp)
+    ) {
+        selectedTags.forEach { tag ->
+            TagChip(
+                tag = tag,
+                isSelected = true,
+                onTagClick = { onTagRemove(tag) }
+            )
         }
     }
 }
+
 @Composable
 fun TagBar(
     tags: List<String>,
     selectedTags: Set<String>,
     onTagClick: (String) -> Unit
 ) {
-    Row(
+    Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
-            .horizontalScroll(rememberScrollState())
     ) {
         tags.forEach { tag ->
             TagChip(
@@ -134,7 +169,16 @@ fun TagChip(
             contentColor = if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.primary
         )
     ) {
-        Text(text = tag)
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Text(text = tag)
+            if (isSelected) {
+                // Mostrar la "X" para eliminar el tag
+                Icon(imageVector = Icons.Default.Close, contentDescription = null)
+            }
+        }
     }
 }
 
@@ -143,13 +187,13 @@ fun ModuleList(
     modules: List<Module>,
     selectedTags: Set<String>
 ) {
-    // Display modules based on the selected tags
+    // Mostrar módulos en función de los tags seleccionados
     modules.forEach { module ->
         if (module.tags.any { it in selectedTags } || selectedTags.isEmpty()) {
-            // Show a button for each module
+            // Mostrar un botón para cada módulo
             Button(
                 onClick = {
-                    // TODO: Navigate to the specific screen for the clicked module
+                    // TODO: Navegar a la pantalla específica para el módulo clicado
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -160,4 +204,5 @@ fun ModuleList(
         }
     }
 }
+
 data class Module(val name: String, val tags: Set<String>)
