@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -42,6 +44,8 @@ fun BuscarScreen(navController: NavHostController) {
     val modules = listOf(
         Module("Module 1", setOf("tag1", "tagA")),
         Module("Module 2", setOf("tag2", "tagB")),
+        Module("Module 2", setOf("tag3", "tagC")),
+        Module("Module 2", setOf("tag4", "tagD")),
         // Add more modules as needed
     )
 
@@ -112,16 +116,14 @@ fun BuscarScreen(navController: NavHostController) {
     }
 }
 
-
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SelectedTagsBar(
     selectedTags: Set<String>,
     onTagRemove: (String) -> Unit
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp)
+    FlowRow( modifier = Modifier
+            .padding(8.dp)
     ) {
         selectedTags.forEach { tag ->
             TagChip(
@@ -133,17 +135,15 @@ fun SelectedTagsBar(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun TagBar(
     tags: List<String>,
     selectedTags: Set<String>,
     onTagClick: (String) -> Unit
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp)
-    ) {
+    FlowRow (modifier = Modifier
+        .padding(8.dp)) {
         tags.forEach { tag ->
             TagChip(
                 tag = tag,
