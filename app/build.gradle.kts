@@ -82,7 +82,5 @@ dependencies {
 
     implementation ("androidx.navigation:navigation-compose:2.5.3")
     implementation ("io.github.sceneview:arsceneview:0.10.2")
-    implementation("androidx.room:room-ktx:2.5.1")
-    kapt("androidx.room:room-compiler:2.5.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
 }

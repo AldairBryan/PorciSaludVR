@@ -49,7 +49,7 @@ fun MainScreen(navController: NavHostController) {
             Color(175,180,43,255)
         ),
         ButtonItem("¿Esta enfermo?", R.drawable.is_sick_icon, "test_pig", Color(156,52,194,255)),
-        ButtonItem("Gestion", R.drawable.news_icon, "gestion_pig", Color(143,201,195,255)),
+        ButtonItem("Busqueda", R.drawable.news_icon, "busqueda", Color(143,201,195,255)),
         ButtonItem("Sobre  Nosotros", R.drawable.about_us_icon, "info_screen", Color(0,200,0,255))
     )
     Spacer(modifier = Modifier.height(25.dp))
