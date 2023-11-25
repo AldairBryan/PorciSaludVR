@@ -108,31 +108,38 @@ fun BuscarScreen(navController: NavHostController) {
             )
         }
 
-        // Texto para indicar los Tags de Búsqueda
-        if (searchQuery.isNotBlank() && filteredTags.isNotEmpty()) {
+        if (searchQuery.isNotBlank() && filteredTags.isEmpty()) {
             Text("Tags de Búsqueda:")
-            // Barra de tags de búsqueda
-            TagBar(
-                tags = filteredTags,
-                selectedTags = allSelectedTags,
-                onTagClick = { tag ->
-                    // Alternar la selección de tag
-                    allSelectedTags = if (tag in allSelectedTags) {
-                        allSelectedTags - tag
-                    } else {
-                        allSelectedTags + tag
+            Text("Sin tags coincidentes encontrados")
+        } else  {
+            // Texto para indicar los Tags de Búsqueda
+            if (searchQuery.isNotBlank() && filteredTags.isNotEmpty() ) {
+                Text("Tags de Búsqueda:")
+                // Barra de tags de búsqueda
+                TagBar(
+                    tags = filteredTags,
+                    selectedTags = allSelectedTags,
+                    onTagClick = { tag ->
+                        // Alternar la selección de tag
+                        allSelectedTags = if (tag in allSelectedTags) {
+                            allSelectedTags - tag
+                        } else {
+                            allSelectedTags + tag
+                        }
+                        // Limpiar la búsqueda al agregar un tag
+                        searchQuery = ""
                     }
-                    // Limpiar la búsqueda al agregar un tag
-                    searchQuery = ""
-                }
-            )
+                )
+            }
         }
 
-        if (searchQuery.isNotBlank() && filteredTags.isNotEmpty()) {
+
+        if (searchQuery.isNotBlank() || filteredTags.isNotEmpty()) {
             Text("Resultados:")
         }
-            // Mostrar módulos
+        // Mostrar módulos
         ModuleList(modules = filteredModules, selectedTags = allSelectedTags, navController= navController)
+
     }
 }
 
