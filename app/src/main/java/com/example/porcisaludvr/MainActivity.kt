@@ -10,6 +10,7 @@ import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
 import com.example.porcisaludvr.BCR.TestPig
 import com.example.porcisaludvr.Busqueda.BuscarScreen
+import com.example.porcisaludvr.Cuidado.SelectCuidadoScreen
 import com.example.porcisaludvr.InfoEnfermedades.NeumoniaInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.PPCInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.SarnaInfoScreen
@@ -39,7 +40,7 @@ class MainActivity : ComponentActivity() {
                         SelectEnfermedadesInfo(navController)
                     }
                     composable("cuidados_cerdos"){
-                        //CuidadosScreen(navController)
+                        SelectCuidadoScreen(navController)
                     }
                     composable("test_pig"){
                         TestPig(navController)
