@@ -94,16 +94,9 @@ fun SarnaInfoScreen(navController: NavHostController){
                     "\n" +
                     " - Aparecen lesiones gruesas, con aspecto similar al amianto en las orejas, a los dos lados del cuello, los codos, la parte delantera de los corvejones y en la parte dorsal del cuello.\n" +
                     " - Su presencia afecta a la eficiencia de conversión del pienso y ganancia diaria, sobretodo si la carga infectiva es grande.",
-            colorTitle = colorInfo)
+            colorTitle = colorInfo,
+            image = R.drawable.m2_info_2_sarna_localizaciones)
         Spacer(modifier = Modifier.height(6.dp))
-
-        Image(
-            painter = painterResource(id = R.drawable.m2_info_2_sarna_localizaciones),
-            contentDescription = null,
-            modifier = Modifier
-                .size(200.dp)
-                .background(Color.Transparent)
-        )
 
         //Causas / Factores
         ExpandableCard(title = "Causas / Factores",

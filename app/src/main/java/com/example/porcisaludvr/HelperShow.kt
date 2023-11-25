@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -58,7 +59,8 @@ fun ExpandableCard(
     colorTitle: Color,
     colorText: Color = Color.Black,
     fontText: FontFamily = Itim,
-    colorBorder: Color = Color.Transparent
+    colorBorder: Color = Color.Transparent,
+    image: Int = 0
 ) {
     var expandedState by remember { mutableStateOf(false) }
     val rotationState by animateFloatAsState(
@@ -125,6 +127,17 @@ fun ExpandableCard(
                     overflow = TextOverflow.Ellipsis,
                     color = colorText
                 )
+                if(image != 0){
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Image(
+                        painter = painterResource(id = image),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .fillMaxWidth() // Ajustar la anchura automáticamente
+                            .height(150.dp)
+                            .background(Color.Transparent)
+                    )
+                }
             }
         }
     }

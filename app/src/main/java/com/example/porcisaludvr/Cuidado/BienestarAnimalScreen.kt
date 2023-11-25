@@ -28,7 +28,7 @@ import com.example.porcisaludvr.ui.theme.Itim
 
 @Composable
 fun BienestarAnimalScreen(navHostController: NavHostController){
-    var colorInfo: Color = Color(0,142,141,255)
+    var colorInfo: Color = Color(137,73,136,255)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -37,7 +37,7 @@ fun BienestarAnimalScreen(navHostController: NavHostController){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text ="Peste Porcina Clasica",
+        Text(text ="Bienestar Animal",
             fontFamily = Itim,
             fontSize = 35.sp,
             fontWeight = FontWeight.Bold,
@@ -47,7 +47,7 @@ fun BienestarAnimalScreen(navHostController: NavHostController){
         )
         // Imagen
         Image(
-            painter = painterResource(id = R.drawable.m2_info_1_ppc),
+            painter = painterResource(id = R.drawable.m3_cuidado_0_bienestar_4),
             contentDescription = null,
             modifier = Modifier
                 .size(200.dp)
@@ -56,44 +56,27 @@ fun BienestarAnimalScreen(navHostController: NavHostController){
 
         // Informacion
         ExpandableCard(title = "Informacion",
-            description = " Es una ",
+            description = "Los principales puntos que debemos asegurar en los porcinos, se resumen en las 5 " +
+                    "libertades, a partir de las cuales se pueden rediseñar los procedimientos operacionales y " +
+                    "generar BIENESTAR ANIMAL en la crianza",
             colorTitle = colorInfo)
         Spacer(modifier = Modifier.height(6.dp))
 
         //Sintomas
-        ExpandableCard(title = "Sintomas",
-            description = "En la",
+        ExpandableCard(title = "Puntos",
+            description = "- Libre de hambre y sed: brindar acceso de agua fresca y una alimentación balanceada " +
+                    "que mantenga plena salud y vigor.\n" +
+                    "- Libre de incomodidad: proveer un entorno adecuado y una zona de descanso " +
+                    "confortable.\n" +
+                    "- Libre de dolor, lesiones y enfermedades: prevención cuando sea posible y rápido " +
+                    "diagnóstico y tratamiento cuando se producen lesiones o enfermedades.\n" +
+                    "- Libertad de expresar un comportamiento normal: proveer suficiente y adecuado espacio " +
+                    "y la compañía e interés de otros porcinos.\n" +
+                    "- Libre de temor y angustia: manejo de los animales libre de maltrato, condiciones " +
+                    "ambientales constantes y ausencia de agresión por parte de otros porcinos.",
             colorBG = colorInfo,
             colorTitle = Color.White,
             colorText = Color.White)
-        Spacer(modifier = Modifier.height(6.dp))
-
-        //Lesiones de Necropsia
-        ExpandableCard(title = "Lesiones de Necropsia",
-            description = "En l ",
-            colorTitle = colorInfo)
-        Spacer(modifier = Modifier.height(6.dp))
-
-        //Tratamiento
-        ExpandableCard(title = "Tratamiento",
-            description = "Para el ",
-            colorTitle = Color.White,
-            colorText = Color.White,
-            colorBG = colorInfo)
-        Spacer(modifier = Modifier.height(6.dp))
-
-        //Prevencion y control
-        ExpandableCard(title = "Prevencion y Control",
-            description = "La medida más im",
-            colorTitle = colorInfo)
-        Spacer(modifier = Modifier.height(6.dp))
-
-        //PRINCIPALES MEDIDAS Que TOMAR ANTE UN BROTE
-        ExpandableCard(title = "Principales medidas que tomar ante un brote",
-            description = "Vacunar o",
-            colorTitle = Color.White,
-            colorText = Color.White,
-            colorBG = colorInfo)
         Spacer(modifier = Modifier.height(6.dp))
     }
 }
