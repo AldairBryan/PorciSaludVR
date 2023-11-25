@@ -100,9 +100,38 @@ fun BuscarScreen(navController: NavHostController) {
                 "Desinfección", "Cuarentena de la granja"),
             Color(211,58,84,255),"info_enfermedad_neumonia"),
 
-        Module("Cuidados Sobre Cerdos",
+        Module("Instalaciones",
             setOf("tag4", "tagD"),
-            Color(175,180,43,255),"cuidados_cerdos"),
+            Color(0,142,141,255),"cuidado_instalaciones"),
+
+        Module("Manejo Est. Productivos",
+            setOf("tag4", "tagD"),
+            Color(255,135,74,255),"cuidado_manejo"),
+
+        Module("Sanidad",
+            setOf("tag4", "tagD"),
+            Color(94,190,124,255),"cuidado_sanidad"),
+
+        Module("Bienestar Animal",
+            setOf("tag4", "tagD"),
+            Color(137,73,136,255),"cuidado_bienestar"),
+
+        Module("Suministro de Agua",
+            setOf("tag4", "tagD"),
+            Color(197, 182, 22,255),"cuidado_suministro_agua"),
+
+        Module("Suministro de Alimento",
+            setOf("tag4", "tagD"),
+            Color(0, 201, 203,255),"cuidado_suministro_alimento"),
+
+        Module("Manejo de Plagas",
+            setOf("tag4", "tagD"),
+            Color(159, 105, 191,255),"cuidado_plagas"),
+
+        Module("Bienestar del Trabajador",
+            setOf("tag4", "tagD"),
+            Color(211,58,84,255),"cuidado_trabajador"),
+
     )
 
     val filteredModules = modules.filter { module ->
@@ -173,8 +202,13 @@ fun BuscarScreen(navController: NavHostController) {
         }
 
         if(searchQuery.isEmpty() && filteredTags.isNotEmpty()){
-            Text(text = "Resultados")
-            ModuleList(modules = filteredModules, selectedTags = allSelectedTags, navController= navController)
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState())
+            ) {
+                Text(text = "Resultados")
+                ModuleList(modules = filteredModules, selectedTags = allSelectedTags, navController= navController)
+
+            }
         }
     }
 }
