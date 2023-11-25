@@ -133,13 +133,10 @@ fun BuscarScreen(navController: NavHostController) {
             }
         }
 
-
-        if (searchQuery.isNotBlank() || filteredTags.isNotEmpty()) {
-            Text("Resultados:")
+        if(searchQuery.isEmpty() && filteredTags.isNotEmpty()){
+            Text(text = "Resultados")
+            ModuleList(modules = filteredModules, selectedTags = allSelectedTags, navController= navController)
         }
-        // Mostrar módulos
-        ModuleList(modules = filteredModules, selectedTags = allSelectedTags, navController= navController)
-
     }
 }
 
