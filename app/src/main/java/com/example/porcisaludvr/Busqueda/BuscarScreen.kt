@@ -1,6 +1,7 @@
 package com.example.porcisaludvr.Busqueda
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -31,9 +33,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.porcisaludvr.ui.theme.Itim
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,11 +49,21 @@ fun BuscarScreen(navController: NavHostController) {
     var allSelectedTags by remember { mutableStateOf(setOf<String>()) }
 
     val modules = listOf(
-        Module("Module 1", setOf("tag1", "tagA")),
-        Module("Module 2", setOf("tag2", "tagB")),
-        Module("Module 2", setOf("tag3", "tagC")),
-        Module("Module 2", setOf("tag4", "tagD")),
-        // Add more modules as needed
+        Module("Peste Porcina Clasica",
+            setOf("tag1", "tagA"),
+            Color(0,142,141,255),"info_enfermedad_ppc"),
+
+        Module("Sarna Sarcoptica",
+            setOf("tag2", "tagB"),
+            Color(137,73,136,255),"info_enfermedad_sarna"),
+
+        Module("Neumonia Enzootica",
+            setOf("tag3", "tagC"),
+            Color(211,58,84,255),"info_enfermedad_neumonia"),
+
+        Module("Cuidados Sobre Cerdos",
+            setOf("tag4", "tagD"),
+            Color(175,180,43,255),"cuidados_cerdos"),
     )
 
     val filteredModules = modules.filter { module ->
@@ -112,7 +129,7 @@ fun BuscarScreen(navController: NavHostController) {
         }
 
         // Mostrar módulos
-        ModuleList(modules = filteredModules, selectedTags = allSelectedTags)
+        ModuleList(modules = filteredModules, selectedTags = allSelectedTags, navController= navController)
     }
 }
 
@@ -185,24 +202,41 @@ fun TagChip(
 @Composable
 fun ModuleList(
     modules: List<Module>,
-    selectedTags: Set<String>
+    selectedTags: Set<String>,
+    navController: NavHostController
 ) {
     // Mostrar módulos en función de los tags seleccionados
     modules.forEach { module ->
         if (module.tags.any { it in selectedTags } || selectedTags.isEmpty()) {
-            // Mostrar un botón para cada módulo
-            Button(
-                onClick = {
-                    // TODO: Navegar a la pantalla específica para el módulo clicado
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp)
-            ) {
-                Text(text = module.name)
-            }
+            crearBoton(texto = module.name, color = module.color, route = module.route, navController = navController)
         }
     }
 }
+@Composable
+fun crearBoton(texto: String, color: Color, route: String, navController: NavHostController){
+    Button(
+        onClick = {
+            navController.navigate(route)
+        },
+        colors = ButtonDefaults.buttonColors(Color.White),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 32.dp, vertical = 8.dp)
+            .shadow(elevation = 4.dp, shape = RoundedCornerShape(24.dp))
+            .border(
+                width = 5.dp, // Ancho del borde
+                color = color, // Color del borde
+                shape = RoundedCornerShape(24.dp) // Bordes redondeados
+            )
+            .background(Color.Transparent)
+    ) {
+        Text(text = texto,
+            fontFamily = Itim,
+            fontSize = 25.sp,
+            fontWeight = FontWeight.Bold,
+            color = color,
+            textAlign = TextAlign.Center)
+    }
+}
 
-data class Module(val name: String, val tags: Set<String>)
+data class Module(val name: String, val tags: Set<String>, val color: Color,val route: String)
