@@ -109,7 +109,7 @@ fun BuscarScreen(navController: NavHostController) {
         }
 
         // Texto para indicar los Tags de Búsqueda
-        if (filteredTags.isNotEmpty()) {
+        if (searchQuery.isNotBlank() && filteredTags.isNotEmpty()) {
             Text("Tags de Búsqueda:")
             // Barra de tags de búsqueda
             TagBar(
@@ -128,7 +128,10 @@ fun BuscarScreen(navController: NavHostController) {
             )
         }
 
-        // Mostrar módulos
+        if (searchQuery.isNotBlank() && filteredTags.isNotEmpty()) {
+            Text("Resultados:")
+        }
+            // Mostrar módulos
         ModuleList(modules = filteredModules, selectedTags = allSelectedTags, navController= navController)
     }
 }
