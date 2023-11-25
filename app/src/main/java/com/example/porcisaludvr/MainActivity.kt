@@ -10,7 +10,15 @@ import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
 import com.example.porcisaludvr.BCR.TestPig
 import com.example.porcisaludvr.Busqueda.BuscarScreen
+import com.example.porcisaludvr.Cuidado.BienestarAnimalScreen
+import com.example.porcisaludvr.Cuidado.InstalacionesScreen
+import com.example.porcisaludvr.Cuidado.ManejoEstProduScreen
+import com.example.porcisaludvr.Cuidado.ManejoPlagasScreen
+import com.example.porcisaludvr.Cuidado.SanidadScreen
 import com.example.porcisaludvr.Cuidado.SelectCuidadoScreen
+import com.example.porcisaludvr.Cuidado.SuministroAguaScreen
+import com.example.porcisaludvr.Cuidado.SuministroAlimentoScreen
+import com.example.porcisaludvr.Cuidado.TrabajadorScreen
 import com.example.porcisaludvr.InfoEnfermedades.NeumoniaInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.PPCInfoScreen
 import com.example.porcisaludvr.InfoEnfermedades.SarnaInfoScreen
@@ -72,6 +80,32 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("info_enfermedad_neumonia"){
                         NeumoniaInfoScreen(navController)
+                    }
+
+                    //Cuidado Informacion Screens
+                    composable("cuidado_instalaciones"){
+                        InstalacionesScreen(navController)
+                    }
+                    composable("cuidado_manejo"){
+                        ManejoEstProduScreen(navController)
+                    }
+                    composable("cuidado_sanidad"){
+                        SanidadScreen(navController)
+                    }
+                    composable("cuidado_bienestar"){
+                        BienestarAnimalScreen(navController)
+                    }
+                    composable("cuidado_suministro_agua"){
+                        SuministroAguaScreen(navController)
+                    }
+                    composable("cuidado_suministro_alimento"){
+                        SuministroAlimentoScreen(navController)
+                    }
+                    composable("cuidado_plagas"){
+                        ManejoPlagasScreen(navController)
+                    }
+                    composable("cuidado_trabajador"){
+                        TrabajadorScreen(navController)
                     }
                 }
             }
