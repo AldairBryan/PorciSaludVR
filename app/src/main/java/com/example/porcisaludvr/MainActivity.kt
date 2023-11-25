@@ -38,13 +38,15 @@ class MainActivity : ComponentActivity() {
                     composable("enfermedades_cerdos"){
                         SelectEnfermedadesInfo(navController)
                     }
-
+                    composable("cuidados_cerdos"){
+                        //CuidadosScreen(navController)
+                    }
                     composable("test_pig"){
                         TestPig(navController)
                     }
-                    /*composable("gestion_pig"){
-                        GeneralCerdosScreen(navController)
-                    }*/
+                    composable("busqueda"){
+                        BuscarScreen(navController)
+                    }
                     composable("info_screen") {
                         InfoScreen(navController)
                     }
@@ -69,11 +71,6 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("info_enfermedad_neumonia"){
                         NeumoniaInfoScreen(navController)
-                    }
-
-                    ///BD
-                    composable("busqueda"){
-                        BuscarScreen(navController)
                     }
                 }
             }

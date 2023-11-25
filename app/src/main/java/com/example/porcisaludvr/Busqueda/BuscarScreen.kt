@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -50,15 +51,53 @@ fun BuscarScreen(navController: NavHostController) {
 
     val modules = listOf(
         Module("Peste Porcina Clasica",
-            setOf("tag1", "tagA"),
+            setOf("Peste Porcina Clasica", "Peste","Enfermedad","Sintoma",
+                "Enfermedad viral","Infectocontagiosa","Hemorragias","Transmisión directa","Transmisión vía digestiva",
+                "Contacto directo","Respiratorio","Piojos del cerdo","Garrapatas","Transmisión mecánica","Moscas","Gallinas",
+                "Pájaros","Resistencia del virus en el ambiente","Bebederos compartidos","Comederos compartidos","Síntomas clínicos",
+                "Muerte súbita","Depresión","Inapetencia","Fiebre","Conjuntivitis","Amontonamiento de cerdos jóvenes","Sofocación",
+                "Secreciones nasales","Petequias en la piel", "Estreñimiento", "Diarrea con sangre", "Vómito", "Trastornos nerviosos",
+                "Ceguera", "Temblores", "Convulsiones", "Rigidez de extremidades", "Crecimiento pobre", "Aborto en cerdas preñadas",
+                "Forma subaguda o crónica", "Procesos neumónicos", "Fracasos reproductivos", "Pérdidas neonatales", "Lesiones de necropsia",
+                "Puntitos rojos en órganos internos", "Ganglios linfáticos afectados", "Riñones afectados",
+                "Bazo normal o aumentado de tamaño", "Infartos esplénicos", "Áreas amarillentas en las amígdalas",
+                "Úlceras botonosas en el intestino grueso", "Tratamiento", "Antibióticos", "Prevención y control", "Vacunación",
+                "Cerdas preñadas y vacunación", "Medidas durante un brote", "Cuarentena",
+                "Control de entrada y salida de personas y animales", "No vender ni comprar nuevos animales",
+                "Sacrificio de animales sospechosos o recuperados", "Eliminación de animales muertos, fetos y placentas",
+                "Desinfección con formol y sosa cáustica"),
             Color(0,142,141,255),"info_enfermedad_ppc"),
 
         Module("Sarna Sarcoptica",
-            setOf("tag2", "tagB"),
+            setOf("Sarna", "Sarna Sarcoptica","Enfermedad","Sintoma", "Ácaro Sarcoptes scabiei var. Suis",
+                "Picazón", "Cambios en la piel", "Cerdas reproductoras", "Pérdidas económicas", "Ganancia de peso diaria",
+                "Índice de conversión", "Producción de leche", "Parasitosis externas", "Ciclo biológico",
+                "Reproducción del parásito", "Larvas", "Ninfas", "Adulto", "Hembra del ácaro", "Huevos",
+                "Supervivencia en el ambiente", "Contagio", "Portadores asintomáticos", "Entrada del parásito a la finca",
+                "Contagio por contacto directo", "Contagio por instalaciones contaminadas", "Superficie interna de las orejas",
+                "Síntomas clínicos", "Prurito", "Engrosamiento de la piel", "Heridas profundas", "Rascado y frotamiento",
+                "Estrés en los cerdos", "Disminución de la ganancia diaria", "Aumento del índice de conversión",
+                "Disminución de la tasa de fertilidad", "Lesiones", "Diagnóstico", "Raspa de piel", "Sangre",
+                "Examen microscópico", "Investigaciones serológicas", "Diferenciación de otras enfermedades de la piel",
+                "Tratamiento y control", "Pulverización con Amitraz", "Rociado con Lindano, Malatión, o solución de clordano",
+                "Aplicación de vertido dorsal con fosmet o foxím", "Vía subcutánea con ivermectina", "Dosificación",
+                "Tratamientos de mantenimiento", "Efecto sobre parásitos adultos y larvarios", "Prevención de la enfermedad",
+                "Baños o pulverizaciones periódicas", "Tratamientos antes del parto y la cubrición"),
             Color(137,73,136,255),"info_enfermedad_sarna"),
 
         Module("Neumonia Enzootica",
-            setOf("tag3", "tagC"),
+            setOf("Neumonia", "Neumonia Enzootica","Enfermedad","Sintoma","NEP", "Prevalencia", "Impacto económico",
+                "Cilios de las células epiteliales", "Moco", "Gérmenes patógenos", "Virus PRRS", "Virus Aujeszky",
+                "Actinomices pleuroneumoniae", "Pleuroneumonía porcina", "Salmonella spp", "Neumonía por Salmonella",
+                "Morbilidad", "Mortalidad", "Síntomas generales del CRP", "Anorexia", "Fiebre", "Polidipsia",
+                "Postración", "Disnea", "Estornudos", "Tos", "Secreciones nasales", "Adelgazamiento",
+                "Lesiones generales del CRP", "Neumonía asociada a M. hyoneumoniae", "Rinitis atrófica",
+                "Rinitis por cuerpo de inclusión", "Diagnóstico", "Análisis clínico epidemiológico", "Análisis de laboratorio",
+                "Fragmento de pulmón", "Hisopos nasales", "Tratamiento", "Antibióticos de amplio espectro", "Penicilinas",
+                "Amoxicilina", "Fosfomicina", "Tilocina", "Tilmicosina", "Tulatromicina", "Florfenicol", "Ceftiofol sódico",
+                "Tiamulina", "Control y profilaxis", "Sistemas de crianza cerrados", "Quimioprofilaxis", "Planes de vacunación",
+                "Marranas gestantes", "Anticuerpos maternos", "Estrés", "Separación de animales enfermos", "Medidas higiénicas",
+                "Desinfección", "Cuarentena de la granja"),
             Color(211,58,84,255),"info_enfermedad_neumonia"),
 
         Module("Cuidados Sobre Cerdos",
@@ -167,7 +206,8 @@ fun TagBar(
     onTagClick: (String) -> Unit
 ) {
     FlowRow (modifier = Modifier
-        .padding(8.dp)) {
+        .padding(8.dp)
+        .verticalScroll(rememberScrollState())) {
         tags.forEach { tag ->
             TagChip(
                 tag = tag,
