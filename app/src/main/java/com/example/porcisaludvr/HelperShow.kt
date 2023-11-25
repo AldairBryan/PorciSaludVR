@@ -241,3 +241,96 @@ fun ExpandableCardImage(
         }
     }
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ExpandableCardTable(
+    title: String,
+    titleFontSize: TextUnit = 25.sp,
+    titleFontWeight: FontWeight = FontWeight.Bold,
+    shape: Shape = RoundedCornerShape(24.dp),
+    padding: Dp = 12.dp,
+    colorBG: Color = Color.White,
+    colorTitle: Color,
+    fontText: FontFamily = Itim,
+    colorBorder: Color = Color.Transparent,
+    image: Int,
+    image2: Int=0,
+) {
+    var expandedState by remember { mutableStateOf(false) }
+    val rotationState by animateFloatAsState(
+        targetValue = if (expandedState) 180f else 0f
+    )
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 32.dp, vertical = 8.dp)
+            .border(width = 4.dp,
+                color = colorBorder,
+                shape = RoundedCornerShape(24.dp))
+            .animateContentSize(
+                animationSpec = tween(
+                    durationMillis = 300,
+                    easing = LinearOutSlowInEasing
+                )
+            ),
+        colors = CardDefaults.cardColors(colorBG),
+        shape = shape,
+        onClick = {
+            expandedState = !expandedState
+        }
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(padding)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    modifier = Modifier
+                        .weight(6f),
+                    text = title,
+                    fontSize = titleFontSize,
+                    fontWeight = titleFontWeight,
+                    fontFamily = fontText,
+                    overflow = TextOverflow.Ellipsis,
+                    color = colorTitle
+                )
+                IconButton(
+                    modifier = Modifier
+                        .weight(1f)
+                        .alpha(ContentAlpha.medium)
+                        .rotate(rotationState),
+                    onClick = {
+                        expandedState = !expandedState
+                    }) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowDropDown,
+                        contentDescription = "Drop-Down Arrow"
+                    )
+                }
+            }
+            if (expandedState) {
+                Image(
+                    painter = painterResource(id = image),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.Transparent)
+                )
+                if (image2 !=0){
+                    Image(
+                        painter = painterResource(id = image2),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color.Transparent)
+                    )
+                }
+            }
+        }
+    }
+}
