@@ -23,12 +23,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.porcisaludvr.ExpandableCard
+import com.example.porcisaludvr.ExpandableCardImage
 import com.example.porcisaludvr.R
 import com.example.porcisaludvr.ui.theme.Itim
 
 @Composable
 fun SuministroAguaScreen(navHostController: NavHostController){
-    var colorInfo: Color = Color(0,142,141,255)
+    var colorInfo: Color = Color(197, 182, 22,255)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -37,7 +38,7 @@ fun SuministroAguaScreen(navHostController: NavHostController){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text ="Peste Porcina Clasica",
+        Text(text ="Suministro de Agua",
             fontFamily = Itim,
             fontSize = 35.sp,
             fontWeight = FontWeight.Bold,
@@ -45,54 +46,56 @@ fun SuministroAguaScreen(navHostController: NavHostController){
             textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(16.dp)
         )
-        // Imagen
-        Image(
-            painter = painterResource(id = R.drawable.m2_info_1_ppc),
-            contentDescription = null,
-            modifier = Modifier
-                .size(200.dp)
-                .background(Color.Transparent)
-        )
 
         // Informacion
-        ExpandableCard(title = "Informacion",
-            description = " Es una ",
+        ExpandableCard(title = "Funciones",
+            description = "Las funciones más importantes en las que intervienen el agua en la vida de los porcinos son:\n" +
+                    "- Forma parte de los tejidos, interviene en todos los procesos nutritivos,\n" +
+                    "- Juega un papel decisivo en la secreción de leche y en la regulación de la temperatura" +
+                    "corporal.\n" +
+                    "- Es indispensable para la vida y su falta puede desencadenar la muerte del animal, de una " +
+                    "forma más rápida que la falta de alimentos.\n" +
+                    "- Un animal puede perder la grasa de su cuerpo y hasta la mitad de la proteína sin perecer " +
+                    "pero, si pierde el 10% de su agua corporal, el animal muere.",
             colorTitle = colorInfo)
         Spacer(modifier = Modifier.height(6.dp))
 
         //Sintomas
-        ExpandableCard(title = "Sintomas",
-            description = "En la",
+        ExpandableCard(title = "Calidad del Agua",
+            description = "La calidad del agua puede afectar el consumo de los alimentos en forma directa ya que el agua de baja calidad genera normalmente un consumo reducido de ella y por lo tanto, un consumo bajo de alimento. El agua a proporcionar a los porcinos debe ser fresca, limpia, sin olores y que no contenga tóxicos que puedan afectar la salud y el normal consumo por parte de los animales.",
             colorBG = colorInfo,
             colorTitle = Color.White,
             colorText = Color.White)
         Spacer(modifier = Modifier.height(6.dp))
 
         //Lesiones de Necropsia
-        ExpandableCard(title = "Lesiones de Necropsia",
-            description = "En l ",
+        ExpandableCard(title = "Consideraciones",
+            description = "Evitar el uso de agua proveniente de fuentes contaminadas, servidas y de acequia. El agua " +
+                    "debe de tener un mínimo de cloro libre de 0.5 ppb",
             colorTitle = colorInfo)
         Spacer(modifier = Modifier.height(6.dp))
 
         //Tratamiento
-        ExpandableCard(title = "Tratamiento",
-            description = "Para el ",
+        ExpandableCard(title = "Variaciones en el consumo",
+            description = "Variaciones en el consumo de agua obedecen a:" +
+                    "\n- Nivel de sal en la ración.\n" +
+                    "- Minerales o medicamentos en el agua (alteran su sabor).\n" +
+                    "- Temperatura del agua.\n" +
+                    "- Área del corral.\n" +
+                    "- Número de veces que se alimenta al animal y tipo de ración.",
             colorTitle = Color.White,
             colorText = Color.White,
             colorBG = colorInfo)
         Spacer(modifier = Modifier.height(6.dp))
 
-        //Prevencion y control
-        ExpandableCard(title = "Prevencion y Control",
-            description = "La medida más im",
+        ExpandableCard(title = "Consideraciones",
+            description = "Evitar el uso de agua proveniente de fuentes contaminadas, servidas y de acequia. El agua " +
+                    "debe de tener un mínimo de cloro libre de 0.5 ppb",
             colorTitle = colorInfo)
-        Spacer(modifier = Modifier.height(6.dp))
 
-        //PRINCIPALES MEDIDAS Que TOMAR ANTE UN BROTE
-        ExpandableCard(title = "Principales medidas que tomar ante un brote",
-            description = "Vacunar o",
+        ExpandableCardImage(title = "Requerimiento en crianza",
+            image = R.drawable.m3_cuidado_5_tabla,
             colorTitle = Color.White,
-            colorText = Color.White,
             colorBG = colorInfo)
         Spacer(modifier = Modifier.height(6.dp))
     }

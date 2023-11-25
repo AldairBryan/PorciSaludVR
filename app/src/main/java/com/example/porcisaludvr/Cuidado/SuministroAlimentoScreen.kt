@@ -28,7 +28,7 @@ import com.example.porcisaludvr.ui.theme.Itim
 
 @Composable
 fun SuministroAlimentoScreen(navHostController: NavHostController){
-    var colorInfo: Color = Color(0,142,141,255)
+    var colorInfo: Color = Color(0, 201, 203,255)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -37,7 +37,7 @@ fun SuministroAlimentoScreen(navHostController: NavHostController){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text ="Peste Porcina Clasica",
+        Text(text ="Suministro de Alimento",
             fontFamily = Itim,
             fontSize = 35.sp,
             fontWeight = FontWeight.Bold,
@@ -45,55 +45,27 @@ fun SuministroAlimentoScreen(navHostController: NavHostController){
             textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(16.dp)
         )
-        // Imagen
-        Image(
-            painter = painterResource(id = R.drawable.m2_info_1_ppc),
-            contentDescription = null,
-            modifier = Modifier
-                .size(200.dp)
-                .background(Color.Transparent)
-        )
 
         // Informacion
         ExpandableCard(title = "Informacion",
-            description = " Es una ",
+            description = "Se sugiere, alimentar a los porcinos a intervalos regulares, y con una alimentación fresca que se debe poner sólo después de haber eliminado la ración anterior del comedero, Los alimentos a suministrar deberían cumplir con los requerimientos básicos nutricionales para cada etapa fisiológica productiva y estar libres de contaminantes durante la elaboración y el almacenamiento." +
+                    "\nUna dieta balanceada debería proveer la totalidad de nutrientes, energía, proteína (aminoácidos esenciales y no esenciales, proteína bruta), grasas, minerales y vitaminas, en cantidad y calidad, que permitan al animal manifestar su potencial de producción cuando se encuentra en un estado sanitario y en condiciones ambientales adecuadas. Cantidades inferiores limitan el desempeño de los animales, y si se exceden los valores o proporciones de nutrientes recomendados existirá un uso ineficiente y se habrán de tener pérdidas a través de las excreciones, induciendo un proceso contaminante." +
+                    "\nAl abaratar los costos en la alimentación, los criadores buscan alimentar a los porcinos con alternativas como sub productos y residuos de cocina, sin embargo desconocen que es difícil indicar la cantidad exacta, por la variación en la composición y calidad, consecuentemente los porcinos pueden experimentar más problemas y entrar en un gasto mayor, que si se brindaría el alimento balanceado convencional. Es fundamental que los productores no alimenten a los porcinos con desechos de basurales, ya que esto representa un riesgo sanitario para los animales y para la población en general." +
+                    "\nRespecto a la crianza familiar y traspatio, la única manera de enriquecer la dieta es incorporando SUPLEMENTOS tales como aditivos, vitaminas, harinas procesadas además de incorporar pasturas tipo leguminosas a fin de tener un margen mayor de proteína.",
             colorTitle = colorInfo)
         Spacer(modifier = Modifier.height(6.dp))
 
         //Sintomas
-        ExpandableCard(title = "Sintomas",
-            description = "En la",
+        ExpandableCard(title = "Consideraciones",
+            description = "Consideraciones de cantidades a suministrar en diferentes etapas productivas y necesidades de proteína" +
+                    "\n\nMachos sementales: 2 kilos de un alimento de mantenimiento por día y dependiendo de su trabajo." +
+                    "\n\nHembras en gestación (preñadas): 2 kilos/día en promedio de alimento de gestación para mantener una condición de carnes en 3,5 (calificación de 1 a 5)" +
+                    "\n\nHembras en lactancia y destetadas hasta el momento del nuevo servicio: Alimento de lactancia (tiene más energía) a voluntad varias veces al día (4-5 veces para evitar desperdicios)" +
+                    "\n\nLechones en lactancia: Sólo granitos de un pre iniciador (21% proteína) en la tercera semana de nacidos para que aprenda a comer antes del destete." +
+                    "\n\nEn crecimiento se suministra alimento de levante (16% de proteína) a voluntad y se cambia luego gradualmente a alimento de engorde o finalización (14% de proteína) también a voluntad hasta llegar a peso de mercado.",
             colorBG = colorInfo,
             colorTitle = Color.White,
             colorText = Color.White)
-        Spacer(modifier = Modifier.height(6.dp))
-
-        //Lesiones de Necropsia
-        ExpandableCard(title = "Lesiones de Necropsia",
-            description = "En l ",
-            colorTitle = colorInfo)
-        Spacer(modifier = Modifier.height(6.dp))
-
-        //Tratamiento
-        ExpandableCard(title = "Tratamiento",
-            description = "Para el ",
-            colorTitle = Color.White,
-            colorText = Color.White,
-            colorBG = colorInfo)
-        Spacer(modifier = Modifier.height(6.dp))
-
-        //Prevencion y control
-        ExpandableCard(title = "Prevencion y Control",
-            description = "La medida más im",
-            colorTitle = colorInfo)
-        Spacer(modifier = Modifier.height(6.dp))
-
-        //PRINCIPALES MEDIDAS Que TOMAR ANTE UN BROTE
-        ExpandableCard(title = "Principales medidas que tomar ante un brote",
-            description = "Vacunar o",
-            colorTitle = Color.White,
-            colorText = Color.White,
-            colorBG = colorInfo)
         Spacer(modifier = Modifier.height(6.dp))
     }
 }

@@ -28,7 +28,7 @@ import com.example.porcisaludvr.ui.theme.Itim
 
 @Composable
 fun ManejoPlagasScreen(navHostController: NavHostController){
-    var colorInfo: Color = Color(0,142,141,255)
+    var colorInfo: Color = Color(159, 105, 191,255)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -37,7 +37,7 @@ fun ManejoPlagasScreen(navHostController: NavHostController){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text ="Peste Porcina Clasica",
+        Text(text ="Manejo Integrado de Plagas",
             fontFamily = Itim,
             fontSize = 35.sp,
             fontWeight = FontWeight.Bold,
@@ -47,7 +47,7 @@ fun ManejoPlagasScreen(navHostController: NavHostController){
         )
         // Imagen
         Image(
-            painter = painterResource(id = R.drawable.m2_info_1_ppc),
+            painter = painterResource(id = R.drawable.m3_cuidado_0_plaga_7),
             contentDescription = null,
             modifier = Modifier
                 .size(200.dp)
@@ -55,45 +55,16 @@ fun ManejoPlagasScreen(navHostController: NavHostController){
         )
 
         // Informacion
-        ExpandableCard(title = "Informacion",
-            description = " Es una ",
+        ExpandableCard(title = "Recomendaciones",
+            description = " Se recomienda:\n" +
+                    "- Eliminar tanto los residuos líquidos como sólidos.\n" +
+                    "- Limpiar diariamente y limpiar con cloro los corrales, después de cada campaña\n" +
+                    "considerando un descanso sin animales no menor que 30 días entre ciclo de crianza.\n" +
+                    "- Desinsectar los corrales cada 3 meses.\n" +
+                    "- 2-3 veces al año se debe desratizar los ambientes.\n" +
+                    "- Recordar que tanto los insecticidas y rodenticidas no deben causar impacto negativo sobre\n" +
+                    "el medio ambiente.",
             colorTitle = colorInfo)
-        Spacer(modifier = Modifier.height(6.dp))
-
-        //Sintomas
-        ExpandableCard(title = "Sintomas",
-            description = "En la",
-            colorBG = colorInfo,
-            colorTitle = Color.White,
-            colorText = Color.White)
-        Spacer(modifier = Modifier.height(6.dp))
-
-        //Lesiones de Necropsia
-        ExpandableCard(title = "Lesiones de Necropsia",
-            description = "En l ",
-            colorTitle = colorInfo)
-        Spacer(modifier = Modifier.height(6.dp))
-
-        //Tratamiento
-        ExpandableCard(title = "Tratamiento",
-            description = "Para el ",
-            colorTitle = Color.White,
-            colorText = Color.White,
-            colorBG = colorInfo)
-        Spacer(modifier = Modifier.height(6.dp))
-
-        //Prevencion y control
-        ExpandableCard(title = "Prevencion y Control",
-            description = "La medida más im",
-            colorTitle = colorInfo)
-        Spacer(modifier = Modifier.height(6.dp))
-
-        //PRINCIPALES MEDIDAS Que TOMAR ANTE UN BROTE
-        ExpandableCard(title = "Principales medidas que tomar ante un brote",
-            description = "Vacunar o",
-            colorTitle = Color.White,
-            colorText = Color.White,
-            colorBG = colorInfo)
         Spacer(modifier = Modifier.height(6.dp))
     }
 }
