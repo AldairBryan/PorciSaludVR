@@ -217,6 +217,7 @@ fun BuscarScreen(navController: NavHostController) {
             // Barra de tags seleccionados
             SelectedTagsBar(
                 selectedTags = allSelectedTags,
+                modules = modules,
                 onTagRemove = { tag ->
                     allSelectedTags -= tag
                 }
@@ -234,6 +235,7 @@ fun BuscarScreen(navController: NavHostController) {
                 TagBar(
                     tags = filteredTags,
                     selectedTags = allSelectedTags,
+                    modules = modules,
                     onTagClick = { tag ->
                         // Alternar la selección de tag
                         allSelectedTags = if (tag in allSelectedTags) {
@@ -263,6 +265,7 @@ fun BuscarScreen(navController: NavHostController) {
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SelectedTagsBar(
+    modules: List<Module>,
     selectedTags: Set<String>,
     onTagRemove: (String) -> Unit
 ) {
@@ -270,11 +273,15 @@ fun SelectedTagsBar(
             .padding(8.dp)
     ) {
         selectedTags.forEach { tag ->
-            TagChip(
-                tag = tag,
-                isSelected = true,
-                onTagClick = { onTagRemove(tag) }
-            )
+            val module = modules.find { tag in it.tags }
+            if (module != null) {
+                TagChip(
+                    tag = tag,
+                    isSelected = true,
+                    onTagClick = { onTagRemove(tag) },
+                    color = module.color
+                )
+            }
         }
     }
 }
@@ -282,6 +289,7 @@ fun SelectedTagsBar(
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun TagBar(
+    modules: List<Module>,
     tags: List<String>,
     selectedTags: Set<String>,
     onTagClick: (String) -> Unit
@@ -290,11 +298,15 @@ fun TagBar(
         .padding(8.dp)
         .verticalScroll(rememberScrollState())) {
         tags.forEach { tag ->
-            TagChip(
-                tag = tag,
-                isSelected = tag in selectedTags,
-                onTagClick = { onTagClick(tag) }
-            )
+            val module = modules.find { tag in it.tags }
+            if (module != null) {
+                TagChip(
+                    tag = tag,
+                    isSelected = tag in selectedTags,
+                    onTagClick = { onTagClick(tag)},
+                    color = module.color
+                )
+            }
         }
     }
 }
@@ -303,6 +315,7 @@ fun TagBar(
 fun TagChip(
     tag: String,
     isSelected: Boolean,
+    color: Color,
     onTagClick: () -> Unit
 ) {
     OutlinedButton(
@@ -311,14 +324,14 @@ fun TagChip(
             .padding(end = 8.dp)
             .height(32.dp),
         colors = ButtonDefaults.outlinedButtonColors(
-            contentColor = if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.primary
+            containerColor = if (isSelected) color else Color.White
         )
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            Text(text = tag, fontFamily = Itim)
+            Text(text = tag, fontFamily = Itim,color = if (isSelected) Color.White else color)
             if (isSelected) {
                 // Mostrar la "X" para eliminar el tag
                 Icon(imageVector = Icons.Default.Close, contentDescription = null)
