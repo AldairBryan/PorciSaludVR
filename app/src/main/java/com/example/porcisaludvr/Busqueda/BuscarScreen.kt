@@ -1,5 +1,6 @@
 package com.example.porcisaludvr.Busqueda
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
@@ -323,8 +324,10 @@ fun TagChip(
         modifier = Modifier
             .padding(end = 8.dp)
             .height(32.dp),
+        border = BorderStroke(2.dp,color = if (isSelected) Color.Transparent else color),
         colors = ButtonDefaults.outlinedButtonColors(
-            containerColor = if (isSelected) color else Color.White
+            containerColor = if (isSelected) color else Color.White,
+            contentColor = Color.White
         )
     ) {
         Row(
