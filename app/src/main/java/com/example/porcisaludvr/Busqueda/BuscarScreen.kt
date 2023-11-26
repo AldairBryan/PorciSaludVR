@@ -318,7 +318,7 @@ fun TagChip(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            Text(text = tag)
+            Text(text = tag, fontFamily = Itim)
             if (isSelected) {
                 // Mostrar la "X" para eliminar el tag
                 Icon(imageVector = Icons.Default.Close, contentDescription = null)
