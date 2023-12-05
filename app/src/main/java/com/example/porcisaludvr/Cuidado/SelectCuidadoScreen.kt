@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,7 +25,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -61,49 +64,82 @@ fun SelectCuidadoScreen(navController: NavHostController) {
             Color(211,58,84,255)
         ),
     )
-    LazyColumn(
-        state = listState,
-        modifier = Modifier.fillMaxSize()
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        itemsIndexed(buttonItems) {index, buttonItem ->
-            Spacer(modifier = Modifier.height(25.dp))
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 4.dp)
-                    .shadow(elevation = 4.dp, shape = RoundedCornerShape(24.dp))
-                    .border(
-                        width = 5.dp, // Ancho del borde
-                        color = buttonItem.color, // Color del borde
-                        shape = RoundedCornerShape(24.dp) // Bordes redondeados
-                    )
-                    .background(Color.White)
-                    .clickable(onClick = {
-                        navController.navigate(buttonItem.route)
-                    }),
-                contentAlignment = Alignment.CenterStart
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp, vertical = 16.dp)
+                .shadow(elevation = 4.dp, shape = RoundedCornerShape(24.dp))
+                .border(
+                    width = 5.dp, // Ancho del borde
+                    Color(159, 105, 191,255), // Color del borde
+                    shape = RoundedCornerShape(24.dp) // Bordes redondeados
+                )
+                .background(Color.White)
+        ) {
+            Column(
+                Modifier.padding(8.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                Text(
+                    text = "Selecciona el modulo para ver informacion y recomendaciones sobre su cuidado: ",
+                    fontFamily = Itim,
+                    fontSize = 23.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(159, 105, 191,255),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+        LazyColumn(
+            state = listState,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            itemsIndexed(buttonItems) {index, buttonItem ->
+                Spacer(modifier = Modifier.height(25.dp))
+                Box(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 32.dp, vertical = 8.dp)
+                        .fillMaxWidth()
+                        .padding(horizontal = 32.dp, vertical = 4.dp)
+                        .shadow(elevation = 4.dp, shape = RoundedCornerShape(24.dp))
+                        .border(
+                            width = 5.dp, // Ancho del borde
+                            color = buttonItem.color, // Color del borde
+                            shape = RoundedCornerShape(24.dp) // Bordes redondeados
+                        )
+                        .background(Color.White)
+                        .clickable(onClick = {
+                            navController.navigate(buttonItem.route)
+                        }),
+                    contentAlignment = Alignment.CenterStart
                 ) {
-                    Text(
-                        text = buttonItem.label,
-                        fontFamily = Itim,
-                        fontSize = 22.sp,
-                        color = buttonItem.color,
-                        textAlign = TextAlign.Left
-                    )
-                    Spacer(modifier = Modifier.width(13.dp))
-                    Image(
-                        painter = painterResource(id = buttonItem.imageResource),
-                        contentDescription = "Imagen de la enfermedad",
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween,
                         modifier = Modifier
-                            .size(40.dp)
-                    )
+                            .fillMaxSize()
+                            .padding(horizontal = 32.dp, vertical = 8.dp)
+                    ) {
+                        Text(
+                            text = buttonItem.label,
+                            fontFamily = Itim,
+                            fontSize = 22.sp,
+                            color = buttonItem.color,
+                            textAlign = TextAlign.Left
+                        )
+                        Spacer(modifier = Modifier.width(13.dp))
+                        Image(
+                            painter = painterResource(id = buttonItem.imageResource),
+                            contentDescription = "Imagen de la enfermedad",
+                            modifier = Modifier
+                                .size(40.dp)
+                        )
+                    }
                 }
             }
         }
