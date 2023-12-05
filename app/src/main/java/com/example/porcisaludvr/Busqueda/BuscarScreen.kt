@@ -28,6 +28,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -205,16 +207,39 @@ fun BuscarScreen(navController: NavHostController) {
                 searchQuery = it
                 // No hay cambio en los tags seleccionados al cambiar la búsqueda
             },
-            label = { Text("Search") },
-            leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = null) },
+            label = {
+                Text(
+                    text="Ingrese su busqueda",
+                    fontFamily = Itim,
+                    color = Color(143,201,195,255),
+                    fontWeight = FontWeight.Bold,)
+                    },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Search,
+                    contentDescription = null,
+                    tint = Color(143,201,195,255)
+                    ) },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 8.dp)
+                .padding(bottom = 8.dp),
+            textStyle = TextStyle(
+                fontFamily = Itim,
+                fontWeight = FontWeight.Bold,
+                color = Color(143,201,195,255)
+            ),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(0,142,141,255), // Cambia Color(255, 0, 0) al color deseado cuando está enfocado
+                unfocusedBorderColor = Color(0,142,141,255) // Cambia Color(0, 0, 255) al color deseado cuando no está enfocado
+        )
         )
 
         // Texto para indicar los Tags Seleccionados
         if (allSelectedTags.isNotEmpty()) {
-            Text("Tags Seleccionados:")
+            Text(text="Tags Seleccionados:",
+                color=Color(0,142,141,255),
+                fontFamily = Itim,
+                fontWeight = FontWeight.Bold)
             // Barra de tags seleccionados
             SelectedTagsBar(
                 selectedTags = allSelectedTags,
@@ -226,12 +251,21 @@ fun BuscarScreen(navController: NavHostController) {
         }
 
         if (searchQuery.isNotBlank() && filteredTags.isEmpty()) {
-            Text("Tags de Búsqueda:")
-            Text("Sin tags coincidentes encontrados")
+            Text("Tags de Búsqueda:",
+                color=Color(0,142,141,255),
+                fontFamily = Itim,
+                fontWeight = FontWeight.Bold)
+            Text("Sin tags coincidentes encontrados",
+                color=Color(0,142,141,255),
+                fontFamily = Itim,
+                fontWeight = FontWeight.Bold)
         } else  {
             // Texto para indicar los Tags de Búsqueda
             if (searchQuery.isNotBlank() && filteredTags.isNotEmpty() ) {
-                Text("Tags de Búsqueda:")
+                Text("Tags de Búsqueda:",
+                    color=Color(0,142,141,255),
+                    fontFamily = Itim,
+                    fontWeight = FontWeight.Bold)
                 // Barra de tags de búsqueda
                 TagBar(
                     tags = filteredTags,
@@ -255,7 +289,10 @@ fun BuscarScreen(navController: NavHostController) {
             Column(
                 modifier = Modifier.verticalScroll(rememberScrollState())
             ) {
-                Text(text = "Resultados")
+                Text(text = "Resultados:",
+                    color=Color(0,142,141,255),
+                    fontFamily = Itim,
+                    fontWeight = FontWeight.Bold)
                 ModuleList(modules = filteredModules, selectedTags = allSelectedTags, navController= navController)
 
             }
