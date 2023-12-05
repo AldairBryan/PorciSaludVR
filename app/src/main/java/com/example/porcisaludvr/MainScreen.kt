@@ -41,7 +41,7 @@ fun MainScreen(navController: NavHostController) {
         ButtonItem("Sobre el Cuidado", R.drawable.m0_menu_3_cuidado, "cuidados_cerdos",
             Color(175,180,43,255)
         ),
-        ButtonItem("¿Esta enfermo?", R.drawable.m0_menu_4_rbc, "test_pig", Color(156,52,194,255)),
+        ButtonItem("¿Estara enfermo?", R.drawable.m0_menu_4_rbc, "test_pig", Color(156,52,194,255)),
         ButtonItem("Busqueda", R.drawable.m0_menu_5_busqueda, "busqueda", Color(143,201,195,255)),
         ButtonItem("Sobre  Nosotros", R.drawable.m0_menu_6_nosotros, "info_screen", Color(0,200,0,255))
     )
