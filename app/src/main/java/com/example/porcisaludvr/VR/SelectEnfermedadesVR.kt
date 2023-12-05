@@ -90,7 +90,7 @@ fun SelectEnfermedadesVR(navController: NavHostController) {
                     painter = painterResource(id = R.drawable.m1_vr_0_info),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(90.dp)
+                        .size(100.dp)
                         .background(Color.Transparent),
                     colorFilter = ColorFilter.tint(color = Color(252,209,49,255))
                 )

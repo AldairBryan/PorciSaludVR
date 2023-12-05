@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,7 +25,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -46,49 +49,94 @@ fun SelectEnfermedadesInfo(navController: NavHostController) {
             Color(211,58,84,255)
         ),
     )
-    LazyColumn(
-        state = listState,
-        modifier = Modifier.fillMaxSize()
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        itemsIndexed(buttonItems) {index, buttonItem ->
-            Spacer(modifier = Modifier.height(25.dp))
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 4.dp)
-                    .shadow(elevation = 4.dp, shape = RoundedCornerShape(24.dp))
-                    .border(
-                        width = 5.dp, // Ancho del borde
-                        color = buttonItem.color, // Color del borde
-                        shape = RoundedCornerShape(24.dp) // Bordes redondeados
-                    )
-                    .background(Color.White)
-                    .clickable(onClick = {
-                        navController.navigate(buttonItem.route)
-                    }),
-                contentAlignment = Alignment.CenterStart
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(32.dp)
+                .shadow(elevation = 4.dp, shape = RoundedCornerShape(24.dp))
+                .border(
+                    width = 5.dp, // Ancho del borde
+                    Color(211,58,84,255), // Color del borde
+                    shape = RoundedCornerShape(24.dp) // Bordes redondeados
+                )
+                .background(Color.White)
+                .padding(16.dp)
+        ) {
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                Text(
+                    text = "Selecciona la Enfermedad para ver mas informacion sobre ella: ",
+                    fontFamily = Itim,
+                    fontSize = 23.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(211,58,84,255),
+                    textAlign = TextAlign.Center
+                )
+                Spacer(modifier = Modifier.padding(8.dp))
+                Image(
+                    painter = painterResource(id = R.drawable.m2_info_0_info),
+                    contentDescription = null,
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 32.dp, vertical = 8.dp)
+                        .size(120.dp)
+                        .background(Color.Transparent),
+                    colorFilter = ColorFilter.tint(color = Color(211,58,84,255))
+                )
+                Spacer(modifier = Modifier.padding(8.dp))
+            }
+        }
+        LazyColumn(
+            state = listState,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            itemsIndexed(buttonItems) {index, buttonItem ->
+                Spacer(modifier = Modifier.height(25.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 32.dp, vertical = 4.dp)
+                        .shadow(elevation = 4.dp, shape = RoundedCornerShape(24.dp))
+                        .border(
+                            width = 5.dp, // Ancho del borde
+                            color = buttonItem.color, // Color del borde
+                            shape = RoundedCornerShape(24.dp) // Bordes redondeados
+                        )
+                        .background(Color.White)
+                        .clickable(onClick = {
+                            navController.navigate(buttonItem.route)
+                        }),
+                    contentAlignment = Alignment.CenterStart
                 ) {
-                    Text(
-                        text = buttonItem.label,
-                        fontFamily = Itim,
-                        fontSize = 22.sp,
-                        color = buttonItem.color,
-                        textAlign = TextAlign.Left
-                    )
-                    Spacer(modifier = Modifier.width(13.dp))
-                    Image(
-                        painter = painterResource(id = buttonItem.imageResource),
-                        contentDescription = "Imagen de la enfermedad",
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween,
                         modifier = Modifier
-                            .size(40.dp)
-                    )
+                            .fillMaxSize()
+                            .padding(horizontal = 32.dp, vertical = 8.dp)
+                    ) {
+                        Text(
+                            text = buttonItem.label,
+                            fontFamily = Itim,
+                            fontSize = 22.sp,
+                            color = buttonItem.color,
+                            textAlign = TextAlign.Left
+                        )
+                        Spacer(modifier = Modifier.width(13.dp))
+                        Image(
+                            painter = painterResource(id = buttonItem.imageResource),
+                            contentDescription = "Imagen de la enfermedad",
+                            modifier = Modifier
+                                .size(40.dp)
+                        )
+                    }
                 }
             }
         }
