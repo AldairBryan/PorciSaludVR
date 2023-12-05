@@ -69,11 +69,10 @@ fun InfoScreen(navController: NavHostController) {
                     .background(Color.Transparent)
             )
             Spacer(modifier = Modifier.height(16.dp))
-            var longText = "¡Bienvenidos a PorciSalud! Somos un proyecto desarrollado por dos  estudiantes universitarios," +
-                    "hemos combinado nuestros conocimientos en la tecnología y la ganadería porcina para crear" +
-                    "esta aplicación de M-Learning con Realidad Aumentada. Durante nuestra investigación y desarrollo," +
-                    "hemos invertido tiempo y esfuerzo en comprender las necesidades de los productores de ganado porcino" +
-                    "y los técnicos de la industria, sobre todo en las enfermedades. "
+            var longText = "¡Bienvenidos a PorciSalud! Somos un proyecto desarrollado por dos  estudiantes universitarios, " +
+                    "hemos creado esta aplicación de M-Learning con Realidad Aumentada y Razonamiento Basado en Casos, para enseñar " +
+                    "sobre enfermedades porcinas. \n" +
+                    "¡Agradecemos tu opinion! "
             Text(
                 text = longText,
                 fontFamily = Itim,
