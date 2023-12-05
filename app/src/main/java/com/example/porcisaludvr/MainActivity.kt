@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
+import com.example.porcisaludvr.BCR.TestDescripcion
 import com.example.porcisaludvr.BCR.TestPig
 import com.example.porcisaludvr.Busqueda.BuscarScreen
 import com.example.porcisaludvr.Cuidado.BienestarAnimalScreen
@@ -51,6 +52,9 @@ class MainActivity : ComponentActivity() {
                         SelectCuidadoScreen(navController)
                     }
                     composable("test_pig"){
+                        TestDescripcion(navController)
+                    }
+                    composable("test_pig_confirmar"){
                         TestPig(navController)
                     }
                     composable("busqueda"){
